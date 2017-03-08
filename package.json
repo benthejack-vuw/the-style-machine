@@ -1,7 +1,7 @@
 {
-  "name": "ts-babel-webpack-project-template",
+  "name": "the-style-machine",
   "version": "0.0.1",
-  "description": "An empty project scaffold for a typescript-babel(ES2015)-webpack webapp",
+  "description": "a 3d modelling tool to automate developed 3D 'styles'",
   "main": "index.js",
   "scripts": {
       "dev": "webpack-dev-server --config webpack.config.dev.js",
@@ -9,8 +9,7 @@
       "prepublish": "webpack"
   },
   "keywords": [
-    "typescript",
-    "babel"
+    "3D modelling"
   ],
   "author": "Ben Jack",
   "license": "MIT",
