@@ -10,7 +10,9 @@
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "./lib",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "types",
+    "typeRoots": ["types"]
   },
   "compileOnSave":false,
   "exclude": ["node_modules", "lib"]
