@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: ['babel-polyfill', 'three', path.join(__dirname, "src/index.ts")],
+  entry: ['babel-polyfill', 'three-trackballcontrols-es6', path.join(__dirname, "src/index.ts")],
   output: {
     path: __dirname,
     filename: "index.bundle.js"
