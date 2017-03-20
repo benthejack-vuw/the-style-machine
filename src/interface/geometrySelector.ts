@@ -4,7 +4,6 @@ import {BufferGeometry,
         MeshBasicMaterial} from "three";
 import { saveAs } from 'file-saver';
 import {fromGeometry, mimeType} from 'threejs-export-stl-es6'
-
 import * as GeometryLoader from "../BJ3D/geometry/geometryLoader"
 
 export class GeometrySelector extends UIObject{
