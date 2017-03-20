@@ -1,8 +1,10 @@
 import {LineSegments,
 	 			CylinderBufferGeometry,
 				Mesh,
-				MeshBasicMaterial,
-			  BufferGeometry} from 'three'
+				MeshPhongMaterial,
+			  BufferGeometry,
+				DoubleSide,
+				FlatShading} from 'three'
 
 import {loadOBJ} from "./BJ3D/geometry/geometryLoader"
 import {GeometrySelector} from "./interface/geometrySelector"
@@ -25,7 +27,12 @@ window.addEventListener('load', function(){
 	let geom = latheBuilder.build();
 	geomSelector.geometry = geom;
 
-	let material = new MeshBasicMaterial({color:0xffffff, wireframe:true})
+	let material = new MeshPhongMaterial( {
+					color: 0x156289,
+					emissive: 0x072534,
+					side: DoubleSide,
+					shading: FlatShading
+				} );
 	let currentMesh:Mesh = new Mesh(geom, material);
 	stage.addToScene(currentMesh);
 

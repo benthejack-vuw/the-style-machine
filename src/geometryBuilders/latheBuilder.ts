@@ -124,8 +124,8 @@ let uiParams = {
     "attributes":{
         "type":"range",
         "min":10,
-        "max":300,
-        "value":80,
+        "max":600,
+        "value":100,
         "step":1
     }
   },
@@ -136,8 +136,8 @@ let uiParams = {
     "attributes":{
         "type":"range",
         "min":10,
-        "max":300,
-        "value":80,
+        "max":600,
+        "value":100,
         "step":1
     }
   }

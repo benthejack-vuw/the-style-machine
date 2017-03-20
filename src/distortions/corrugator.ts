@@ -23,6 +23,7 @@ export class Corrugator extends BufferDistortion{
 
 
     let out = new Vector3(position.x, 0, position.z);
+    out.normalize();
     let direction = normal.lerp(out, this["angle"]);
 
 

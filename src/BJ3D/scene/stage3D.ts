@@ -12,7 +12,8 @@ import {Vector2,
 				BoxGeometry,
 				MeshBasicMaterial,
 				Mesh,
-			  Color} from 'three'
+			  Color,
+			PointLight} from 'three'
 
 export class Stage3D{
 
@@ -41,9 +42,20 @@ export class Stage3D{
 		this._camera = new PerspectiveCamera(75, this._size.x/this._size.y, 0.1, 1000);
 		this._camera.position.z = 4;
 		this._camera.position.y = 3;
-
-
 		this._canvas = this._renderer.domElement;
+
+		var lights = [];
+		lights[ 0 ] = new PointLight( 0xffffff, 1, 0 );
+		lights[ 1 ] = new PointLight( 0xffffff, 1, 0 );
+		lights[ 2 ] = new PointLight( 0xffffff, 1, 0 );
+
+		lights[ 0 ].position.set( 0, 200, 0 );
+		lights[ 1 ].position.set( 100, 200, 100 );
+		lights[ 2 ].position.set( - 100, - 200, - 100 );
+
+		this._scene.add( lights[ 0 ] );
+		this._scene.add( lights[ 1 ] );
+		this._scene.add( lights[ 2 ] );
 
 		this._trackball = new TrackballControls(this._camera, this._parent);
 		this._parent.appendChild(this._canvas);
