@@ -1,14 +1,15 @@
 import {UIObject} from "../BJ3D/UI/uiObject"
 import {BufferGeometry,
         Mesh,
-        MeshBasicMaterial} from "three";
-import { saveAs } from 'file-saver';
-import {fromGeometry, mimeType} from 'threejs-export-stl-es6'
+        MeshBasicMaterial,
+        Object3D,
+        Scene} from "three";
+
 import * as GeometryLoader from "../BJ3D/geometry/geometryLoader"
 
 export class GeometrySelector extends UIObject{
 
-  private _geometry;
+  private _mesh:Mesh;
 
   constructor(parent:HTMLElement){
     super("Geometry");
@@ -16,31 +17,16 @@ export class GeometrySelector extends UIObject{
     this.displayUIOn(parent);
   }
 
-  public get geometry():BufferGeometry{
-    return this._geometry;
-  }
-
-  public set geometry(geometry){
-    this._geometry = geometry;
-  }
 
   public loadOBJ = ()=>{
     console.log("LOAD");
     GeometryLoader.selectOBJFile().then((mesh:Mesh) => {
-        this._geometry = <BufferGeometry>mesh.geometry;
-        this._updateCallback(this._geometry);
+        let geometry = <BufferGeometry>mesh.geometry;
+        this._updateCallback(geometry);
       }).catch(
       err => {console.error(err)}
     );
   }
-
-  public saveSTL = () =>{
-    console.log("SAVE");
-    const buffer = fromGeometry(this._geometry);
-    const blob = new Blob([buffer], { type: mimeType });
-
-    saveAs(blob, 'cube.stl');
-	}
 
   //override
   public updateFunction(callback){
@@ -58,16 +44,5 @@ let interfaceDefinition:any = {
     "callbacks":{
       "click":"loadOBJ"
     }
-  },
-
-  "save-geometry":{
-    "attributes":{
-      "type":"button",
-      "value":"Save"
-    },
-    "callbacks":{
-      "click":"saveSTL"
-    }
   }
-
 }

@@ -12,7 +12,8 @@
     "outDir": "./lib",
     "sourceMap": true,
     "baseUrl": "types",
-    "typeRoots": ["types"]
+    "typeRoots": ["types"],
+    "allowJs" : true
   },
   "compileOnSave":false,
   "exclude": ["node_modules", "lib"]

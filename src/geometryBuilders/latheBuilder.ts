@@ -32,9 +32,9 @@ export class LatheBuilder extends GeometryBuilder{
     this.rebuildSpline();
   }
 
-  public build = ():BufferGeometry => {
+  public build = (resolutionDivider?:number):BufferGeometry => {
     this.rebuildPoints();
-    return this.rebuildGeometry();
+    return this.rebuildGeometry(resolutionDivider);
   }
 
   protected rebuildPoints(){
@@ -72,9 +72,11 @@ export class LatheBuilder extends GeometryBuilder{
     this._splineUI.addChildAt(0, this._spline);
   }
 
-  protected rebuildGeometry():BufferGeometry{
+  protected rebuildGeometry(resolutionDivider?:number):BufferGeometry{
 
-    let splinePoints = this._spline.spline(this["horizontalSlices"], 1.0);
+    let divide:number = resolutionDivider || 1;
+
+    let splinePoints = this._spline.spline(this["horizontalSlices"]/divide, 1.0);
     let lathePoints = [];
     let maxY = -100000000000;
     for(let i = splinePoints.length-1; i >= 0 ; --i){
@@ -86,7 +88,7 @@ export class LatheBuilder extends GeometryBuilder{
         lathePoints[i].y = maxY-lathePoints[i].y;
     }
 
-    this._geometry = new LatheBufferGeometry(lathePoints , this["verticalSlices"] );
+    this._geometry = new LatheBufferGeometry(lathePoints , this["verticalSlices"]/divide );
     return <BufferGeometry> this._geometry;
   }
 
@@ -124,7 +126,7 @@ let uiParams = {
     "attributes":{
         "type":"range",
         "min":10,
-        "max":600,
+        "max":400,
         "value":100,
         "step":1
     }
@@ -136,7 +138,7 @@ let uiParams = {
     "attributes":{
         "type":"range",
         "min":10,
-        "max":600,
+        "max":200,
         "value":100,
         "step":1
     }

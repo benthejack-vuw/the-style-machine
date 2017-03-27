@@ -1,8 +1,9 @@
 import {LineSegments,
 	 			CylinderBufferGeometry,
 				Mesh,
+				MeshBasicMaterial,
 				MeshPhongMaterial,
-			  BufferGeometry,
+			  	BufferGeometry,
 				DoubleSide,
 				FlatShading} from 'three'
 
@@ -25,32 +26,35 @@ window.addEventListener('load', function(){
 
 	let latheBuilder = new LatheBuilder(geomSelector.uiPanel);
 	let geom = latheBuilder.build();
-	geomSelector.geometry = geom;
 
-	let material = new MeshPhongMaterial( {
-					color: 0x156289,
-					emissive: 0x072534,
-					side: DoubleSide,
-					shading: FlatShading
-				} );
-	let currentMesh:Mesh = new Mesh(geom, material);
-	stage.addToScene(currentMesh);
-
-	let distorter = new DistortionAggregator(<BufferGeometry>currentMesh.geometry);
+	let distorter = new DistortionAggregator(geom);
+	distorter.scene = stage.scene;
+	distorter.displayUIOn(UI);
 	let corrugator = new Corrugator();
 	corrugator.displayUIOn(UI);
 	distorter.addDistortion(corrugator);
 
 	function updateMesh(buffer:BufferGeometry){
+
+			stage.removeFromScene(distorter.innerMesh);
+			stage.removeFromScene(distorter.bodyMesh);
+			stage.removeFromScene(distorter.outerMesh);
+
 			buffer.type = 'BufferGeometry';
-			distorter.setGeometry(buffer);
-			geomSelector.geometry = buffer;
-			currentMesh.geometry = buffer;
+			distorter.geometry = buffer;
+
+			stage.addToScene(distorter.innerMesh);
+			stage.addToScene(distorter.bodyMesh);
+			stage.addToScene(distorter.outerMesh);
+
 			distorter.apply();
+
 	}
 
 	function updateLathe(){
 		updateMesh(latheBuilder.build());
+		distorter.shells = latheBuilder.build(2);
+		distorter.apply();
 	}
 
 	latheBuilder.updateFunction(updateLathe);
