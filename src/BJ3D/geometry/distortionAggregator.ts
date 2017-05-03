@@ -19,7 +19,7 @@ import {saveScene} from "../scene/saveScene"
 
 
 let distortionParams = {
-  
+
  "save":{
     "attributes":{
       "type":"button",
@@ -47,6 +47,30 @@ let distortionParams = {
     },
     "callbacks":{
       "click":"toggleInnerShell"
+    }
+  },
+  "outer-expand":{
+    "variable":"expandOuter",
+    "label":"expand outer shell",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":-1,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "inner-expand":{
+    "variable":"expandInner",
+    "label":"expand inner shell",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":-1,
+        "max":1,
+        "value":0,
+        "step":0.001
     }
   },
   "top-convergence":{
@@ -87,11 +111,11 @@ export class DistortionAggregator extends UIObject{
   private _vertexAttribute:THREE.BufferAttribute;
   private _innerAttribute:THREE.BufferAttribute;
   private _outerAttribute:THREE.BufferAttribute;
-  
+
 
   private _positions:any[];
   private _startPositions:any[];
-  
+
   private _shellPositions:any[];
   private _shellNormals:any[];
   private _shellUVs:any[];
@@ -201,11 +225,11 @@ export class DistortionAggregator extends UIObject{
 
 
   public toggleOuterShell = ()=>{
-    this._outerMesh.visible = !this._outerMesh.visible; 
+    this._outerMesh.visible = !this._outerMesh.visible;
   }
 
   public toggleInnerShell = ()=>{
-    this._innerMesh.visible = !this._innerMesh.visible; 
+    this._innerMesh.visible = !this._innerMesh.visible;
   }
 
   public get innerShell():BufferGeometry{
@@ -222,6 +246,7 @@ export class DistortionAggregator extends UIObject{
   }
 
   public apply = () => {
+    console.log(this["expandInner"], this["expandOuter"])
 
     function smoothstep(edge0:number, edge1:number, x:number)
     {
@@ -280,13 +305,21 @@ export class DistortionAggregator extends UIObject{
       n.normalize();
       let innerPos = position.clone();
       let n_i = n.clone();
+      let n_t = n.clone();
       n_i.multiplyScalar(minOffset*pinch);
+      n_t.multiplyScalar(this["expandInner"]);
+      n_i.add(n_t);
       innerPos.add(n_i);
 
       let outerPos = position.clone();
       let n_o = n.clone();
+      n_t = n.clone();
       n_o.multiplyScalar(maxOffset*pinch);
+      n_t.multiplyScalar(this["expandOuter"]);
+      n_o.add(n_t);
       outerPos.add(n_o);
+
+
 
       this._innerPositions[i] = innerPos.x;
       this._innerPositions[i+1] = innerPos.y;
