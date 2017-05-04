@@ -50223,6 +50223,30 @@ var distortionParams = {
             "click": "toggleInnerShell"
         }
     },
+    "outer-expand": {
+        "variable": "expandOuter",
+        "label": "expand outer shell",
+        "listener": "input",
+        "attributes": {
+            "type": "range",
+            "min": -1,
+            "max": 1,
+            "value": 0,
+            "step": 0.001
+        }
+    },
+    "inner-expand": {
+        "variable": "expandInner",
+        "label": "expand inner shell",
+        "listener": "input",
+        "attributes": {
+            "type": "range",
+            "min": -1,
+            "max": 1,
+            "value": 0,
+            "step": 0.001
+        }
+    },
     "top-convergence": {
         "variable": "topConvergence",
         "label": "pinch shells top",
@@ -50268,6 +50292,7 @@ var DistortionAggregator = function (_UIObject) {
             _this._innerMesh.visible = !_this._innerMesh.visible;
         };
         _this.apply = function () {
+            console.log(_this["expandInner"], _this["expandOuter"]);
             function smoothstep(edge0, edge1, x) {
                 x = __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
                 return x * x * x * (x * (x * 6 - 15) + 10);
@@ -50317,11 +50342,17 @@ var DistortionAggregator = function (_UIObject) {
                 _n.normalize();
                 var innerPos = position.clone();
                 var n_i = _n.clone();
+                var n_t = _n.clone();
                 n_i.multiplyScalar(minOffset * pinch);
+                n_t.multiplyScalar(_this["expandInner"]);
+                n_i.add(n_t);
                 innerPos.add(n_i);
                 var outerPos = position.clone();
                 var n_o = _n.clone();
+                n_t = _n.clone();
                 n_o.multiplyScalar(maxOffset * pinch);
+                n_t.multiplyScalar(_this["expandOuter"]);
+                n_o.add(n_t);
                 outerPos.add(n_o);
                 _this._innerPositions[_i] = innerPos.x;
                 _this._innerPositions[_i + 1] = innerPos.y;
