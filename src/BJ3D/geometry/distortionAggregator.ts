@@ -248,14 +248,6 @@ export class DistortionAggregator extends UIObject{
   public apply = () => {
     console.log(this["expandInner"], this["expandOuter"])
 
-    function smoothstep(edge0:number, edge1:number, x:number)
-    {
-        // Scale, and clamp x to 0..1 range
-        x = BJMath.clamp((x - edge0)/(edge1 - edge0), 0.0, 1.0);
-        // Evaluate polynomial
-        return x*x*x*(x*(x*6 - 15) + 10);
-    }
-
     let index:number;
     let position:Vector3, normal:Vector3, uv:Vector2;
     let newPosition:Vector3, multipliedPosition:Vector3;
@@ -276,7 +268,7 @@ export class DistortionAggregator extends UIObject{
       uv = new Vector2(this._uvs[index*2], this._uvs[index*2+1]);
       accumulator = 0;
 
-      pinch = (this["topConvergence"] == 0 ? 1 : smoothstep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 :smoothstep(0, this["bottomConvergence"],  uv.y));
+      pinch = (this["topConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 :BJMath.smoothStep(0, this["bottomConvergence"],  uv.y));
 
       for(var j = 0; j < this._distortions.length; ++j){
 
@@ -300,7 +292,7 @@ export class DistortionAggregator extends UIObject{
       position = new Vector3(this._shellPositions[i], this._shellPositions[i+1], this._shellPositions[i+2]);
       uv = new Vector2(this._shellUVs[index*2], this._shellUVs[index*2+1]);
       normal = new Vector3(this._shellNormals[i], this._shellNormals[i+1], this._shellNormals[i+2]);
-      pinch = (this["topConvergence"] == 0 ? 1 : smoothstep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 :smoothstep(0, this["bottomConvergence"],  uv.y));
+      pinch = (this["topConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["bottomConvergence"],  uv.y));
       let n = normal.clone();
       n.normalize();
       let innerPos = position.clone();

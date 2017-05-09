@@ -101,8 +101,8 @@ let uiParams = {
     "listener":"input",
     "attributes":{
         "type":"range",
-        "min":4,
-        "max":10,
+        "min":2,
+        "max":20,
         "value":6,
         "step":1
     }

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 367);
+/******/ 	return __webpack_require__(__webpack_require__.s = 368);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -150,11 +150,11 @@ module.exports = function(exec){
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_util__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_util__ = __webpack_require__(356);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__util_util__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_0__util_util__["b"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_0__util_util__["c"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_storage__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_storage__ = __webpack_require__(353);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__geometry_point__ = __webpack_require__(67);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__geometry_point__["a"]; });
@@ -340,7 +340,7 @@ module.exports = function(NAME, exec){
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(51)
+var IObject = __webpack_require__(52)
   , defined = __webpack_require__(20);
 module.exports = function(it){
   return IObject(defined(it));
@@ -350,7 +350,7 @@ module.exports = function(it){
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE            = __webpack_require__(52)
+var pIE            = __webpack_require__(53)
   , createDesc     = __webpack_require__(30)
   , toIObject      = __webpack_require__(16)
   , toPrimitive    = __webpack_require__(24)
@@ -429,7 +429,7 @@ module.exports = function(method, arg){
 // 5 -> Array#find
 // 6 -> Array#findIndex
 var ctx      = __webpack_require__(26)
-  , IObject  = __webpack_require__(51)
+  , IObject  = __webpack_require__(52)
   , toObject = __webpack_require__(10)
   , toLength = __webpack_require__(9)
   , asc      = __webpack_require__(160);
@@ -610,7 +610,7 @@ if(__webpack_require__(7)){
     , toPrimitive         = __webpack_require__(24)
     , has                 = __webpack_require__(11)
     , same                = __webpack_require__(123)
-    , classof             = __webpack_require__(50)
+    , classof             = __webpack_require__(51)
     , isObject            = __webpack_require__(5)
     , toObject            = __webpack_require__(10)
     , isArrayIter         = __webpack_require__(77)
@@ -44710,6 +44710,12 @@ var InteractionEventType;
 
 /***/ }),
 /* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.bjUtils=e():t.bjUtils=e()}(this,function(){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}var n={};return e.m=t,e.c=n,e.i=function(t){return t},e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=13)}([function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}n.d(e,"a",function(){return u});var u=function(t){function e(t,n){return r(this,e),o(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"Cannot convert from object to "+t+": "+n))}return i(e,t),e}(Error)},function(t,e,n){"use strict";var r=n(0);n.d(e,"a",function(){return r.a});var o=n(1);n.d(e,"b",function(){return o.b}),n.d(e,"c",function(){return o.c});n(4),n(5)},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var o=n(0);n.d(e,"a",function(){return u});var i=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),u=function(){function t(e,n){r(this,t),this.x=e,this.y=n}return i(t,[{key:"copy",value:function(){return new t(this.x,this.y)}},{key:"offsetCopy",value:function(e,n){return new t(this.x+e,this.y+n)}},{key:"move",value:function(t){this.translate(t,t)}},{key:"moveTo",value:function(t){this.x=t.x,this.y=t.y}},{key:"translate",value:function(t,e){this.x+=t,this.y+=e}},{key:"scale",value:function(t){this.x*=t,this.y*=t}},{key:"distanceTo",value:function(t){return Math.sqrt(Math.pow(this.x-t.x,2)+Math.pow(this.y-t.y,2))}},{key:"offsetFrom",value:function(e){return new t(this.x-e.x,this.y-e.y)}},{key:"asArray",value:function(){return[this.x,this.y]}},{key:"as3DArray",value:function(){return[this.x,this.y,0]}},{key:"toJSON",value:function(){return{x:this.x,y:this.y}}},{key:"toString",value:function(){return"("+this.x+", "+this.y+")"}}],[{key:"fromData",value:function(e){if("number"!=typeof e.x||"number"!=typeof e.y)throw new o.a("Point","x and y must be numbers");return new t(e.x,e.y)}}]),t}()},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n(12);n.d(e,"DomUtils",function(){return r.a}),n.d(e,"DrawingUtils",function(){return r.b}),n.d(e,"BJMath",function(){return r.c}),n.d(e,"Transform",function(){return r.d});var o=n(7);n.d(e,"Storage",function(){return o.a});var i=n(2);n.d(e,"Point",function(){return i.a});var u=n(1);n.d(e,"DataError",function(){return u.a}),n.d(e,"OrderError",function(){return u.b}),n.d(e,"OverrideError",function(){return u.c})},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}!function(t){function e(t,n,i){return r(this,e),o(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"Before calling "+n+" on "+t+" call "+i))}i(e,t),e}(Error)},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}!function(t){function e(t,n,i){r(this,e);var u=/function (.{1,})\(/,a=u.exec(n.constructor.toString());return o(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"you must override the "+i+" method of "+t+" in "+a))}i(e,t),e}(Error)},function(t,e,n){"use strict";function r(t,e){o(t,JSON.stringify(e))}function o(t,e){try{f()?(delete localStorage[t],localStorage[t]=e):alert("Failed to store the data: your browser doesn't support local storage.\n\nYou can continue as normal, but be aware that your work will not be saved if the page is closed.")}catch(t){alert("Failed to store the data: it's either too big, or you're out of space.\n\nYou can continue as normal, but be aware that your work will not be saved if the page is closed.")}}function i(t){if(f()&&c(t))return JSON.parse(localStorage[t])}function u(t){if(f()&&c(t))return localStorage[t]}function a(t){f()&&c(t)&&delete localStorage[t]}function c(t){if(f())return"object"===l(localStorage[t])||"string"==typeof localStorage[t]}function s(){f()&&localStorage.clear()}function f(){return"object"===("undefined"==typeof localStorage?"undefined":l(localStorage))}Object.defineProperty(e,"__esModule",{value:!0}),e.storeJSON=r,e.store=o,e.getJSON=i,e.get=u,e.remove=a,e.contains=c,e.clearAll=s,e.supported=f;var l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t}},function(t,e,n){"use strict";var r=n(6);n.d(e,"a",function(){return r})},function(t,e,n){"use strict";function r(t,e,n){document.getElementById(t).setAttribute(e,n)}function o(t){return new Promise(function(e,n){var r=new XMLHttpRequest;r.onreadystatechange=function(){4===r.readyState&&(200===r.status?e(r.responseText):n(r.status))},r.open("GET",t),r.send()})}function i(t){return new Promise(function(e,n){o(t).then(function(t){e(JSON.parse(t))}).catch(function(t){console.error(t)})})}function u(t){var e=document.createElement("canvas");return e.width=t.width,e.height=t.height,e.getContext("2d").drawImage(t,0,0),e.toDataURL()}function a(t,e){var n=document.createElement("a");if(n.setAttribute("href","data:text/plain;charset=utf-8,"+encodeURIComponent(e)),n.setAttribute("download",t),document.createEvent){var r=document.createEvent("MouseEvents");r.initEvent("click",!0,!0),n.dispatchEvent(r)}else n.click()}function c(){var t=document.createElement("input");return t.type="file",t.accept="image/*",t.setAttribute("style","display:none;"),document.body.appendChild(t),new Promise(function(e){t.addEventListener("change",function(){var n=t.files[0];n&&(e(n),document.body.removeChild(t))}),t.dispatchEvent(new MouseEvent("click"))})}function s(){var t=document.createElement("input");return t.type="file",t.setAttribute("style","display:none;"),document.body.appendChild(t),new Promise(function(e){t.addEventListener("change",function(){var n=this.files[0];n&&(e(n),document.body.removeChild(t))}),t.dispatchEvent(new MouseEvent("click"))})}function f(t){return new Promise(function(e,n){var r=new FileReader;r.addEventListener("load",function(){return e(r.result)}),r.addEventListener("error",n),r.readAsText(t)})}function l(t){return new Promise(function(e,n){f(t).then(function(t){try{e(JSON.parse(t))}catch(t){n(t)}}).catch(function(t){console.error(t)})})}function h(t){return new Promise(function(e,n){var r=new FileReader;r.addEventListener("load",function(){return e(r.result)}),r.addEventListener("error",n),r.readAsDataURL(t)})}function m(t){return new Promise(function(e,n){var r=document.createElement("img");r.addEventListener("load",function(){return e(r)}),r.addEventListener("error",n),r.src=t})}function d(t){for(var e=t.split(","),n=e[0].match(/:(.*?);/)[1],r=atob(e[1]),o=r.length,i=new Uint8Array(o);o--;)i[o]=r.charCodeAt(o);return new Blob([i],{type:n})}function y(t,e,n){var r=document.createElement("a"),o=void 0===n?"image/jpeg":"image/"+n,i=t.toDataURL(o),u=(i.substr(22,i.length),d(i)),a=URL.createObjectURL(u);r.download=void 0!==n?e+"."+n:e+".jpeg",r.href=a,r.click()}Object.defineProperty(e,"__esModule",{value:!0}),e.editDomElementAttr=r,e.fetchFile=o,e.fetchJSONFile=i,e.dataURLfromImage=u,e.downloadTextAsFile=a,e.selectImage=c,e.selectFile=s,e.readFile=f,e.readFileAsJSON=l,e.readImageAsURL=h,e.buildImageFromURL=m,e.downloadCanvasImage=y},function(t,e,n){"use strict";function r(t){return"rgba("+t+", "+t+", "+t+", 1)"}function o(t,e){return"rgba("+t+", "+t+", "+t+", "+e/255+")"}function i(t,e,n){return"rgba("+t+", "+e+", "+n+", 1)"}function u(t,e,n,r){return"rgba("+t+", "+e+", "+n+", "+r/255+")"}Object.defineProperty(e,"__esModule",{value:!0}),e.grey=r,e.greyA=o,e.rgb=i,e.rgba=u},function(t,e,n){"use strict";function r(t,e,n){return Math.min(Math.max(t,e),n)}function o(t,e,n,r){var o=n-t,i=r-e;return Math.sqrt(o*o+i*i)}function i(t,e,n){return n=r(n,0,1),t+(e-t)*n}function u(t,e,n){return(n=r((n-t)/(e-t),0,1))*n*n*(n*(6*n-15)+10)}Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"TWO_PI",function(){return a}),e.clamp=r,e.dist=o,e.lerp=i,e.smoothStep=u;var a=2*Math.PI},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var o=n(2);n.d(e,"a",function(){return u});var i=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),u=function(){function t(){r(this,t),this.reset()}return i(t,[{key:"set",value:function(t){this.m=[].concat(t)}},{key:"copy",value:function(){var e=new t;return e.set(this.m),e}},{key:"reset",value:function(){this.m=[1,0,0,1,0,0]}},{key:"multiply",value:function(t){var e=this.m[0]*t.m[0]+this.m[2]*t.m[1],n=this.m[1]*t.m[0]+this.m[3]*t.m[1],r=this.m[0]*t.m[2]+this.m[2]*t.m[3],o=this.m[1]*t.m[2]+this.m[3]*t.m[3],i=this.m[0]*t.m[4]+this.m[2]*t.m[5]+this.m[4],u=this.m[1]*t.m[4]+this.m[3]*t.m[5]+this.m[5];this.m[0]=e,this.m[1]=n,this.m[2]=r,this.m[3]=o,this.m[4]=i,this.m[5]=u}},{key:"invert",value:function(){var t=1/(this.m[0]*this.m[3]-this.m[1]*this.m[2]),e=this.m[3]*t,n=-this.m[1]*t,r=-this.m[2]*t,o=this.m[0]*t,i=t*(this.m[2]*this.m[5]-this.m[3]*this.m[4]),u=t*(this.m[1]*this.m[4]-this.m[0]*this.m[5]);this.m[0]=e,this.m[1]=n,this.m[2]=r,this.m[3]=o,this.m[4]=i,this.m[5]=u}},{key:"rotate",value:function(t){var e=Math.cos(t),n=Math.sin(t),r=this.m[0]*e+this.m[2]*n,o=this.m[1]*e+this.m[3]*n,i=this.m[0]*-n+this.m[2]*e,u=this.m[1]*-n+this.m[3]*e;this.m[0]=r,this.m[1]=o,this.m[2]=i,this.m[3]=u}},{key:"translate",value:function(t,e){this.m[4]+=this.m[0]*t+this.m[2]*e,this.m[5]+=this.m[1]*t+this.m[3]*e}},{key:"scale",value:function(t,e){this.m[0]*=t,this.m[1]*=t,this.m[2]*=e,this.m[3]*=e}},{key:"transformPoint",value:function(t){var e=t.x,n=t.y,r=e*this.m[0]+n*this.m[2]+this.m[4],i=e*this.m[1]+n*this.m[3]+this.m[5];return new o.a(r,i)}},{key:"apply",value:function(t){t.setTransform(this.m[0],this.m[1],this.m[2],this.m[3],this.m[4],this.m[5])}}]),t}()},function(t,e,n){"use strict";var r=n(8),o=n(9),i=n(10);n.d(e,"a",function(){return r}),n.d(e,"b",function(){return o}),n.d(e,"c",function(){return i});var u=n(11);n.d(e,"d",function(){return u.a})},function(t,e,n){t.exports=n(3)}])});
+
+/***/ }),
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45053,7 +45059,7 @@ var DisplayObject = function () {
 //# sourceMappingURL=displayObject.js.map
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45076,7 +45082,7 @@ var InteractionEventType;
 //# sourceMappingURL=interactionHandler.js.map
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
@@ -45104,7 +45110,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -45114,16 +45120,10 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
 };
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.bjUtils=e():t.bjUtils=e()}(this,function(){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}var n={};return e.m=t,e.c=n,e.i=function(t){return t},e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=13)}([function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}n.d(e,"a",function(){return u});var u=function(t){function e(t,n){return r(this,e),o(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"Cannot convert from object to "+t+": "+n))}return i(e,t),e}(Error)},function(t,e,n){"use strict";var r=n(0);n.d(e,"a",function(){return r.a});var o=n(1);n.d(e,"b",function(){return o.b}),n.d(e,"c",function(){return o.c});n(4),n(5)},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var o=n(0);n.d(e,"a",function(){return u});var i=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),u=function(){function t(e,n){r(this,t),this.x=e,this.y=n}return i(t,[{key:"copy",value:function(){return new t(this.x,this.y)}},{key:"offsetCopy",value:function(e,n){return new t(this.x+e,this.y+n)}},{key:"move",value:function(t){this.translate(t,t)}},{key:"moveTo",value:function(t){this.x=t.x,this.y=t.y}},{key:"translate",value:function(t,e){this.x+=t,this.y+=e}},{key:"scale",value:function(t){this.x*=t,this.y*=t}},{key:"distanceTo",value:function(t){return Math.sqrt(Math.pow(this.x-t.x,2)+Math.pow(this.y-t.y,2))}},{key:"offsetFrom",value:function(e){return new t(this.x-e.x,this.y-e.y)}},{key:"asArray",value:function(){return[this.x,this.y]}},{key:"as3DArray",value:function(){return[this.x,this.y,0]}},{key:"toJSON",value:function(){return{x:this.x,y:this.y}}},{key:"toString",value:function(){return"("+this.x+", "+this.y+")"}}],[{key:"fromData",value:function(e){if("number"!=typeof e.x||"number"!=typeof e.y)throw new o.a("Point","x and y must be numbers");return new t(e.x,e.y)}}]),t}()},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n(12);n.d(e,"DomUtils",function(){return r.a}),n.d(e,"DrawingUtils",function(){return r.b}),n.d(e,"BJMath",function(){return r.c}),n.d(e,"Transform",function(){return r.d});var o=n(7);n.d(e,"Storage",function(){return o.a});var i=n(2);n.d(e,"Point",function(){return i.a});var u=n(1);n.d(e,"DataError",function(){return u.a}),n.d(e,"OrderError",function(){return u.b}),n.d(e,"OverrideError",function(){return u.c})},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}!function(t){function e(t,n,i){return r(this,e),o(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"Before calling "+n+" on "+t+" call "+i))}i(e,t),e}(Error)},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}!function(t){function e(t,n,i){r(this,e);var u=/function (.{1,})\(/,a=u.exec(n.constructor.toString());return o(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"you must override the "+i+" method of "+t+" in "+a))}i(e,t),e}(Error)},function(t,e,n){"use strict";function r(t,e){o(t,JSON.stringify(e))}function o(t,e){try{f()?(delete localStorage[t],localStorage[t]=e):alert("Failed to store the data: your browser doesn't support local storage.\n\nYou can continue as normal, but be aware that your work will not be saved if the page is closed.")}catch(t){alert("Failed to store the data: it's either too big, or you're out of space.\n\nYou can continue as normal, but be aware that your work will not be saved if the page is closed.")}}function i(t){if(f()&&c(t))return JSON.parse(localStorage[t])}function u(t){if(f()&&c(t))return localStorage[t]}function a(t){f()&&c(t)&&delete localStorage[t]}function c(t){if(f())return"object"===l(localStorage[t])||"string"==typeof localStorage[t]}function s(){f()&&localStorage.clear()}function f(){return"object"===("undefined"==typeof localStorage?"undefined":l(localStorage))}Object.defineProperty(e,"__esModule",{value:!0}),e.storeJSON=r,e.store=o,e.getJSON=i,e.get=u,e.remove=a,e.contains=c,e.clearAll=s,e.supported=f;var l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t}},function(t,e,n){"use strict";var r=n(6);n.d(e,"a",function(){return r})},function(t,e,n){"use strict";function r(t,e,n){document.getElementById(t).setAttribute(e,n)}function o(t){return new Promise(function(e,n){var r=new XMLHttpRequest;r.onreadystatechange=function(){4===r.readyState&&(200===r.status?e(r.responseText):n(r.status))},r.open("GET",t),r.send()})}function i(t){return new Promise(function(e,n){o(t).then(function(t){e(JSON.parse(t))}).catch(function(t){console.error(t)})})}function u(t){var e=document.createElement("canvas");return e.width=t.width,e.height=t.height,e.getContext("2d").drawImage(t,0,0),e.toDataURL()}function a(t,e){var n=document.createElement("a");if(n.setAttribute("href","data:text/plain;charset=utf-8,"+encodeURIComponent(e)),n.setAttribute("download",t),document.createEvent){var r=document.createEvent("MouseEvents");r.initEvent("click",!0,!0),n.dispatchEvent(r)}else n.click()}function c(){var t=document.createElement("input");return t.type="file",t.accept="image/*",t.setAttribute("style","display:none;"),document.body.appendChild(t),new Promise(function(e){t.addEventListener("change",function(){var n=t.files[0];n&&(e(n),document.body.removeChild(t))}),t.dispatchEvent(new MouseEvent("click"))})}function s(){var t=document.createElement("input");return t.type="file",t.setAttribute("style","display:none;"),document.body.appendChild(t),new Promise(function(e){t.addEventListener("change",function(){var n=this.files[0];n&&(e(n),document.body.removeChild(t))}),t.dispatchEvent(new MouseEvent("click"))})}function f(t){return new Promise(function(e,n){var r=new FileReader;r.addEventListener("load",function(){return e(r.result)}),r.addEventListener("error",n),r.readAsText(t)})}function l(t){return new Promise(function(e,n){f(t).then(function(t){try{e(JSON.parse(t))}catch(t){n(t)}}).catch(function(t){console.error(t)})})}function h(t){return new Promise(function(e,n){var r=new FileReader;r.addEventListener("load",function(){return e(r.result)}),r.addEventListener("error",n),r.readAsDataURL(t)})}function m(t){return new Promise(function(e,n){var r=document.createElement("img");r.addEventListener("load",function(){return e(r)}),r.addEventListener("error",n),r.src=t})}function d(t){for(var e=t.split(","),n=e[0].match(/:(.*?);/)[1],r=atob(e[1]),o=r.length,i=new Uint8Array(o);o--;)i[o]=r.charCodeAt(o);return new Blob([i],{type:n})}function y(t,e,n){var r=document.createElement("a"),o=void 0===n?"image/jpeg":"image/"+n,i=t.toDataURL(o),u=(i.substr(22,i.length),d(i)),a=URL.createObjectURL(u);r.download=void 0!==n?e+"."+n:e+".jpeg",r.href=a,r.click()}Object.defineProperty(e,"__esModule",{value:!0}),e.editDomElementAttr=r,e.fetchFile=o,e.fetchJSONFile=i,e.dataURLfromImage=u,e.downloadTextAsFile=a,e.selectImage=c,e.selectFile=s,e.readFile=f,e.readFileAsJSON=l,e.readImageAsURL=h,e.buildImageFromURL=m,e.downloadCanvasImage=y},function(t,e,n){"use strict";function r(t){return"rgba("+t+", "+t+", "+t+", 1)"}function o(t,e){return"rgba("+t+", "+t+", "+t+", "+e/255+")"}function i(t,e,n){return"rgba("+t+", "+e+", "+n+", 1)"}function u(t,e,n,r){return"rgba("+t+", "+e+", "+n+", "+r/255+")"}Object.defineProperty(e,"__esModule",{value:!0}),e.grey=r,e.greyA=o,e.rgb=i,e.rgba=u},function(t,e,n){"use strict";function r(t,e,n){return Math.min(Math.max(t,e),n)}function o(t,e,n,r){var o=n-t,i=r-e;return Math.sqrt(o*o+i*i)}function i(t,e,n){return n=r(n,0,1),t+(e-t)*n}Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"TWO_PI",function(){return u}),e.clamp=r,e.dist=o,e.lerp=i;var u=2*Math.PI},function(t,e,n){"use strict";function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var o=n(2);n.d(e,"a",function(){return u});var i=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),u=function(){function t(){r(this,t),this.reset()}return i(t,[{key:"set",value:function(t){this.m=[].concat(t)}},{key:"copy",value:function(){var e=new t;return e.set(this.m),e}},{key:"reset",value:function(){this.m=[1,0,0,1,0,0]}},{key:"multiply",value:function(t){var e=this.m[0]*t.m[0]+this.m[2]*t.m[1],n=this.m[1]*t.m[0]+this.m[3]*t.m[1],r=this.m[0]*t.m[2]+this.m[2]*t.m[3],o=this.m[1]*t.m[2]+this.m[3]*t.m[3],i=this.m[0]*t.m[4]+this.m[2]*t.m[5]+this.m[4],u=this.m[1]*t.m[4]+this.m[3]*t.m[5]+this.m[5];this.m[0]=e,this.m[1]=n,this.m[2]=r,this.m[3]=o,this.m[4]=i,this.m[5]=u}},{key:"invert",value:function(){var t=1/(this.m[0]*this.m[3]-this.m[1]*this.m[2]),e=this.m[3]*t,n=-this.m[1]*t,r=-this.m[2]*t,o=this.m[0]*t,i=t*(this.m[2]*this.m[5]-this.m[3]*this.m[4]),u=t*(this.m[1]*this.m[4]-this.m[0]*this.m[5]);this.m[0]=e,this.m[1]=n,this.m[2]=r,this.m[3]=o,this.m[4]=i,this.m[5]=u}},{key:"rotate",value:function(t){var e=Math.cos(t),n=Math.sin(t),r=this.m[0]*e+this.m[2]*n,o=this.m[1]*e+this.m[3]*n,i=this.m[0]*-n+this.m[2]*e,u=this.m[1]*-n+this.m[3]*e;this.m[0]=r,this.m[1]=o,this.m[2]=i,this.m[3]=u}},{key:"translate",value:function(t,e){this.m[4]+=this.m[0]*t+this.m[2]*e,this.m[5]+=this.m[1]*t+this.m[3]*e}},{key:"scale",value:function(t,e){this.m[0]*=t,this.m[1]*=t,this.m[2]*=e,this.m[3]*=e}},{key:"transformPoint",value:function(t){var e=t.x,n=t.y,r=e*this.m[0]+n*this.m[2]+this.m[4],i=e*this.m[1]+n*this.m[3]+this.m[5];return new o.a(r,i)}},{key:"apply",value:function(t){t.setTransform(this.m[0],this.m[1],this.m[2],this.m[3],this.m[4],this.m[5])}}]),t}()},function(t,e,n){"use strict";var r=n(8),o=n(9),i=n(10);n.d(e,"a",function(){return r}),n.d(e,"b",function(){return o}),n.d(e,"c",function(){return i});var u=n(11);n.d(e,"d",function(){return u.a})},function(t,e,n){t.exports=n(3)}])});
 
 /***/ }),
 /* 54 */
@@ -46901,7 +46901,7 @@ module.exports = function(name){
 /* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof   = __webpack_require__(50)
+var classof   = __webpack_require__(51)
   , ITERATOR  = __webpack_require__(6)('iterator')
   , Iterators = __webpack_require__(44);
 module.exports = __webpack_require__(25).getIteratorMethod = function(it){
@@ -47296,7 +47296,7 @@ var BoundingBox = function (_Rectangle) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__canvas_displayObject__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__canvas_displayObject__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DraggablePoint; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Direction; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -47440,7 +47440,7 @@ var PointLink = function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polygon__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__canvas_displayObject__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__canvas_displayObject__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DraggablePolygon; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -47720,7 +47720,7 @@ module.exports = function(iter, ITERATOR){
 
 var aFunction = __webpack_require__(12)
   , toObject  = __webpack_require__(10)
-  , IObject   = __webpack_require__(51)
+  , IObject   = __webpack_require__(52)
   , toLength  = __webpack_require__(9);
 
 module.exports = function(that, callbackfn, aLen, memo, isRight){
@@ -47930,7 +47930,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(50)
+var classof = __webpack_require__(51)
   , from    = __webpack_require__(104);
 module.exports = function(NAME){
   return function toJSON(){
@@ -48090,9 +48090,9 @@ module.exports = Math.log1p || function log1p(x){
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys  = __webpack_require__(37)
   , gOPS     = __webpack_require__(63)
-  , pIE      = __webpack_require__(52)
+  , pIE      = __webpack_require__(53)
   , toObject = __webpack_require__(10)
-  , IObject  = __webpack_require__(51)
+  , IObject  = __webpack_require__(52)
   , $assign  = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -48191,7 +48191,7 @@ module.exports = function(object, names){
 
 var getKeys   = __webpack_require__(37)
   , toIObject = __webpack_require__(16)
-  , isEnum    = __webpack_require__(52).f;
+  , isEnum    = __webpack_require__(53).f;
 module.exports = function(isEntries){
   return function(it){
     var O      = toIObject(it)
@@ -48511,7 +48511,7 @@ var GUICallback = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bj_utils__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__guiInteractionHandler__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keyboardInteractionHandler__ = __webpack_require__(132);
@@ -48773,7 +48773,7 @@ var KeyComboBinding = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bj_utils__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mouseData__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interactionHandler__ = __webpack_require__(47);
@@ -49026,9 +49026,9 @@ var DataError = function (_Error) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__error__ = __webpack_require__(136);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__error__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__error__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order__ = __webpack_require__(350);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__override__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__override__ = __webpack_require__(351);
 /* unused harmony namespace reexport */
 
 
@@ -49042,7 +49042,7 @@ var DataError = function (_Error) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__displayObject__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__displayObject__ = __webpack_require__(49);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "DisplayObject", function() { return __WEBPACK_IMPORTED_MODULE_0__displayObject__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stage__ = __webpack_require__(138);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Stage", function() { return __WEBPACK_IMPORTED_MODULE_1__stage__["a"]; });
@@ -49057,7 +49057,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_interaction_centre__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__displayObject__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__displayObject__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Stage; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -49216,7 +49216,7 @@ var Stage = function (_DisplayObject) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__interactive_interactive__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__interactive_interactive__ = __webpack_require__(361);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "DraggablePoint", function() { return __WEBPACK_IMPORTED_MODULE_0__interactive_interactive__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return __WEBPACK_IMPORTED_MODULE_0__interactive_interactive__["b"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "DraggableRect", function() { return __WEBPACK_IMPORTED_MODULE_0__interactive_interactive__["c"]; });
@@ -49225,19 +49225,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "SnapGrid", function() { return __WEBPACK_IMPORTED_MODULE_0__interactive_interactive__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boundingBox__ = __webpack_require__(98);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BoundingBox", function() { return __WEBPACK_IMPORTED_MODULE_1__boundingBox__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__circle__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__circle__ = __webpack_require__(358);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Circle", function() { return __WEBPACK_IMPORTED_MODULE_2__circle__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__line__ = __webpack_require__(141);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Line", function() { return __WEBPACK_IMPORTED_MODULE_3__line__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polygon__ = __webpack_require__(68);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Polygon", function() { return __WEBPACK_IMPORTED_MODULE_4__polygon__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polygonGrid__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polygonGrid__ = __webpack_require__(362);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "PolygonGrid", function() { return __WEBPACK_IMPORTED_MODULE_5__polygonGrid__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rectangle__ = __webpack_require__(101);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Rectangle", function() { return __WEBPACK_IMPORTED_MODULE_6__rectangle__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__regularPolygon__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__regularPolygon__ = __webpack_require__(363);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RegularPolygon", function() { return __WEBPACK_IMPORTED_MODULE_7__regularPolygon__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__triangle__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__triangle__ = __webpack_require__(364);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Triangle", function() { return __WEBPACK_IMPORTED_MODULE_8__triangle__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__spline__ = __webpack_require__(142);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Spline", function() { return __WEBPACK_IMPORTED_MODULE_9__spline__["a"]; });
@@ -49259,7 +49259,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__canvas_displayObject__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__canvas_displayObject__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boundingBox__ = __webpack_require__(98);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SnapGrid; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -49432,8 +49432,8 @@ var Line = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__canvas_displayObject__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cat_rom_spline_generic__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__canvas_displayObject__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cat_rom_spline_generic__ = __webpack_require__(357);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Spline; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -49518,9 +49518,9 @@ var Spline = function (_DisplayObject) {
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interactionHandlers_keyboardInteractionHandler__ = __webpack_require__(145);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__interactionHandlers_interactionHandler__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__interactionHandlers_interactionHandler__ = __webpack_require__(50);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__interactionHandlers_interactionManager__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__interactionHandlers_interactionManager__ = __webpack_require__(366);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_4__interactionHandlers_interactionManager__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_4__interactionHandlers_interactionManager__["b"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mouseData__ = __webpack_require__(69);
@@ -49538,7 +49538,7 @@ var Spline = function (_DisplayObject) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__interactionHandler__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__interactionHandler__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GUIInteractionHandler; });
 /* unused harmony export GUICallback */
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -49646,7 +49646,7 @@ var GUICallback = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__interactionHandler__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__interactionHandler__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeyboardInteractionHandler; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -49658,7 +49658,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-__webpack_require__(366).polyfill();
+__webpack_require__(367).polyfill();
 var special_keys = ["control", "alt", "shift", "meta"];
 var KeyboardInteractionHandler = function (_InteractionHandler) {
     _inherits(KeyboardInteractionHandler, _InteractionHandler);
@@ -49835,7 +49835,7 @@ var KeyComboBinding = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils_lib_geometry_point__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bj_utils_lib_util_transform__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mouseData__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__interactionHandler__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__interactionHandler__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MouseInteractionHandler; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -50174,12 +50174,12 @@ var multiplierParams = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_three__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bj_utils__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bj_utils__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bj_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bj_utils__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UI_uiObject__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_file_saver__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_file_saver__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__scene_saveScene__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__scene_saveScene__ = __webpack_require__(349);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DistortionAggregator; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -50293,10 +50293,6 @@ var DistortionAggregator = function (_UIObject) {
         };
         _this.apply = function () {
             console.log(_this["expandInner"], _this["expandOuter"]);
-            function smoothstep(edge0, edge1, x) {
-                x = __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
-                return x * x * x * (x * (x * 6 - 15) + 10);
-            }
             var index = void 0;
             var position = void 0,
                 normal = void 0,
@@ -50318,7 +50314,7 @@ var DistortionAggregator = function (_UIObject) {
                 n.normalize();
                 uv = new __WEBPACK_IMPORTED_MODULE_0_three__["Vector2"](_this._uvs[index * 2], _this._uvs[index * 2 + 1]);
                 accumulator = 0;
-                pinch = (_this["topConvergence"] == 0 ? 1 : smoothstep(0, _this["topConvergence"], 1 - uv.y)) * (_this["bottomConvergence"] == 0 ? 1 : smoothstep(0, _this["bottomConvergence"], uv.y));
+                pinch = (_this["topConvergence"] == 0 ? 1 : __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0, _this["topConvergence"], 1 - uv.y)) * (_this["bottomConvergence"] == 0 ? 1 : __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0, _this["bottomConvergence"], uv.y));
                 for (var j = 0; j < _this._distortions.length; ++j) {
                     distortion = _this._distortions[j].vertexDistortionFunction(position, normal, uv, index).multiplyScalar(_this._distortions[j].multiplier);
                     distortion.multiplyScalar(pinch);
@@ -50337,7 +50333,7 @@ var DistortionAggregator = function (_UIObject) {
                 position = new __WEBPACK_IMPORTED_MODULE_0_three__["Vector3"](_this._shellPositions[_i], _this._shellPositions[_i + 1], _this._shellPositions[_i + 2]);
                 uv = new __WEBPACK_IMPORTED_MODULE_0_three__["Vector2"](_this._shellUVs[index * 2], _this._shellUVs[index * 2 + 1]);
                 normal = new __WEBPACK_IMPORTED_MODULE_0_three__["Vector3"](_this._shellNormals[_i], _this._shellNormals[_i + 1], _this._shellNormals[_i + 2]);
-                pinch = (_this["topConvergence"] == 0 ? 1 : smoothstep(0, _this["topConvergence"], 1 - uv.y)) * (_this["bottomConvergence"] == 0 ? 1 : smoothstep(0, _this["bottomConvergence"], uv.y));
+                pinch = (_this["topConvergence"] == 0 ? 1 : __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0, _this["topConvergence"], 1 - uv.y)) * (_this["bottomConvergence"] == 0 ? 1 : __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0, _this["bottomConvergence"], uv.y));
                 var _n = normal.clone();
                 _n.normalize();
                 var innerPos = position.clone();
@@ -50496,7 +50492,7 @@ var GeometryBuilder = function (_UIObject) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_three__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bj_utils_lib_util_domUtils__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_three_obj_loader_es6__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_three_obj_loader_es6__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_three_obj_loader_es6___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_three_obj_loader_es6__);
 /* harmony export (immutable) */ __webpack_exports__["a"] = selectOBJFile;
 /* unused harmony export loadOBJ */
@@ -50624,7 +50620,7 @@ function gridBasicMaterial() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_three_trackballcontrols_es6__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_three_trackballcontrols_es6__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_three__ = __webpack_require__(32);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Stage3D; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -50735,7 +50731,11 @@ var Stage3D = function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BJ3D_geometry_bufferDistortion__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_three__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bj_utils__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bj_utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bj_utils__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_three__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_simplex_noise__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_simplex_noise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_simplex_noise__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Corrugator; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -50747,14 +50747,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var UP = new __WEBPACK_IMPORTED_MODULE_1_three__["Vector3"](0, 1, 0);
+
+
+var UP = new __WEBPACK_IMPORTED_MODULE_2_three__["Vector3"](0, 1, 0);
 var Corrugator = function (_BufferDistortion) {
     _inherits(Corrugator, _BufferDistortion);
 
     function Corrugator() {
         _classCallCheck(this, Corrugator);
 
-        return _possibleConstructorReturn(this, (Corrugator.__proto__ || Object.getPrototypeOf(Corrugator)).call(this, "Corrugation", UIDefinition));
+        var _this = _possibleConstructorReturn(this, (Corrugator.__proto__ || Object.getPrototypeOf(Corrugator)).call(this, "Corrugation", UIDefinition));
+
+        _this.noise = new __WEBPACK_IMPORTED_MODULE_3_simplex_noise___default.a();
+        return _this;
     }
 
     _createClass(Corrugator, [{
@@ -50767,16 +50772,30 @@ var Corrugator = function (_BufferDistortion) {
             var j2 = 1.0;
             i *= TWO_PI * this["yWaves"];
             j *= TWO_PI * this["xWaves"];
-            var out = new __WEBPACK_IMPORTED_MODULE_1_three__["Vector3"](position.x, 0, position.z);
+            var out = new __WEBPACK_IMPORTED_MODULE_2_three__["Vector3"](position.x, 0, position.z);
             out.normalize();
             var direction = normal.lerp(out, this["angle"]);
-            return direction.multiplyScalar(Math.sin(i / (i2 + 1)) * Math.cos(j) * this["amplitude"]);
+            var ny = this.noise.noise2D(0.5 * this["distortionDensity"], uv.y * this["distortionDensity"]);
+            var nx = this.noise.noise2D(uv.x * this["distortionDensity"], uv.y * this["distortionDensity"]) * __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.0, (10.0 - this["distortionDensity"]) / 100.0 + 0.03, uv.x) * __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.0, (10.0 - this["distortionDensity"]) / 100.0 + 0.03, 1.0 - uv.x);
+            return direction.multiplyScalar(Math.sin(nx + i / (i2 + 1)) * Math.cos(ny + j) * this["amplitude"]);
         }
     }]);
 
     return Corrugator;
 }(__WEBPACK_IMPORTED_MODULE_0__BJ3D_geometry_bufferDistortion__["a" /* BufferDistortion */]);
 var UIDefinition = {
+    "distortion-density": {
+        "variable": "distortionDensity",
+        "label": "Ben says: liquify",
+        "listener": "input",
+        "attributes": {
+            "type": "range",
+            "min": 2.0,
+            "max": 4.0,
+            "value": 3,
+            "step": 0.001
+        }
+    },
     "x-waves": {
         "variable": "xWaves",
         "label": "x waves",
@@ -50859,7 +50878,7 @@ var UIDefinition = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bj_utils_lib_geometry_point__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_quick_canvas_lib_geometry_spline__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_quick_canvas_lib_canvas_stage__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quick_canvas__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quick_canvas__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__BJ3D_geometry_geometryBuilder__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_three__ = __webpack_require__(32);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LatheBuilder; });
@@ -50969,8 +50988,8 @@ var uiParams = {
         "listener": "input",
         "attributes": {
             "type": "range",
-            "min": 4,
-            "max": 10,
+            "min": 2,
+            "max": 20,
             "value": 6,
             "step": 1
         }
@@ -51135,7 +51154,7 @@ module.exports = function(hint){
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(37)
   , gOPS    = __webpack_require__(63)
-  , pIE     = __webpack_require__(52);
+  , pIE     = __webpack_require__(53);
 module.exports = function(it){
   var result     = getKeys(it)
     , getSymbols = gOPS.f;
@@ -51419,7 +51438,7 @@ var $export   = __webpack_require__(0)
   , arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(51) != Object || !__webpack_require__(21)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(52) != Object || !__webpack_require__(21)(arrayJoin)), 'Array', {
   join: function join(separator){
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
@@ -52540,7 +52559,7 @@ $export($export.S, 'Object', {setPrototypeOf: __webpack_require__(84).set});
 "use strict";
 
 // 19.1.3.6 Object.prototype.toString()
-var classof = __webpack_require__(50)
+var classof = __webpack_require__(51)
   , test    = {};
 test[__webpack_require__(6)('toStringTag')] = 'z';
 if(test + '' != '[object z]'){
@@ -52576,7 +52595,7 @@ $export($export.G + $export.F * (parseInt != $parseInt), {parseInt: $parseInt});
 var LIBRARY            = __webpack_require__(34)
   , global             = __webpack_require__(2)
   , ctx                = __webpack_require__(26)
-  , classof            = __webpack_require__(50)
+  , classof            = __webpack_require__(51)
   , $export            = __webpack_require__(0)
   , isObject           = __webpack_require__(5)
   , aFunction          = __webpack_require__(12)
@@ -53897,7 +53916,7 @@ if(!USE_NATIVE){
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f   = $defineProperty;
   __webpack_require__(36).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(52).f  = $propertyIsEnumerable;
+  __webpack_require__(53).f  = $propertyIsEnumerable;
   __webpack_require__(63).f = $getOwnPropertySymbols;
 
   if(DESCRIPTORS && !__webpack_require__(34)){
@@ -55357,7 +55376,7 @@ var saveAs = saveAs || (function(view) {
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports.saveAs = saveAs;
-} else if (("function" !== "undefined" && __webpack_require__(346) !== null) && (__webpack_require__(347) !== null)) {
+} else if (("function" !== "undefined" && __webpack_require__(347) !== null) && (__webpack_require__(348) !== null)) {
   !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
     return saveAs;
   }.call(exports, __webpack_require__, exports, module),
@@ -56314,6 +56333,429 @@ process.umask = function() { return 0; };
 /* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * A fast javascript implementation of simplex noise by Jonas Wagner
+ *
+ * Based on a speed-improved simplex noise algorithm for 2D, 3D and 4D in Java.
+ * Which is based on example code by Stefan Gustavson (stegu@itn.liu.se).
+ * With Optimisations by Peter Eastman (peastman@drizzle.stanford.edu).
+ * Better rank ordering method by Stefan Gustavson in 2012.
+ *
+ *
+ * Copyright (C) 2016 Jonas Wagner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+(function() {
+'use strict';
+
+var F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
+var G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
+var F3 = 1.0 / 3.0;
+var G3 = 1.0 / 6.0;
+var F4 = (Math.sqrt(5.0) - 1.0) / 4.0;
+var G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
+
+function SimplexNoise(random) {
+  if (!random) random = Math.random;
+  this.p = buildPermutationTable(random);
+  this.perm = new Uint8Array(512);
+  this.permMod12 = new Uint8Array(512);
+  for (var i = 0; i < 512; i++) {
+    this.perm[i] = this.p[i & 255];
+    this.permMod12[i] = this.perm[i] % 12;
+  }
+
+}
+SimplexNoise.prototype = {
+    grad3: new Float32Array([1, 1, 0,
+                            -1, 1, 0,
+                            1, -1, 0,
+
+                            -1, -1, 0,
+                            1, 0, 1,
+                            -1, 0, 1,
+
+                            1, 0, -1,
+                            -1, 0, -1,
+                            0, 1, 1,
+
+                            0, -1, 1,
+                            0, 1, -1,
+                            0, -1, -1]),
+    grad4: new Float32Array([0, 1, 1, 1, 0, 1, 1, -1, 0, 1, -1, 1, 0, 1, -1, -1,
+                            0, -1, 1, 1, 0, -1, 1, -1, 0, -1, -1, 1, 0, -1, -1, -1,
+                            1, 0, 1, 1, 1, 0, 1, -1, 1, 0, -1, 1, 1, 0, -1, -1,
+                            -1, 0, 1, 1, -1, 0, 1, -1, -1, 0, -1, 1, -1, 0, -1, -1,
+                            1, 1, 0, 1, 1, 1, 0, -1, 1, -1, 0, 1, 1, -1, 0, -1,
+                            -1, 1, 0, 1, -1, 1, 0, -1, -1, -1, 0, 1, -1, -1, 0, -1,
+                            1, 1, 1, 0, 1, 1, -1, 0, 1, -1, 1, 0, 1, -1, -1, 0,
+                            -1, 1, 1, 0, -1, 1, -1, 0, -1, -1, 1, 0, -1, -1, -1, 0]),
+    noise2D: function(xin, yin) {
+        var permMod12 = this.permMod12;
+        var perm = this.perm;
+        var grad3 = this.grad3;
+        var n0 = 0; // Noise contributions from the three corners
+        var n1 = 0;
+        var n2 = 0;
+        // Skew the input space to determine which simplex cell we're in
+        var s = (xin + yin) * F2; // Hairy factor for 2D
+        var i = Math.floor(xin + s);
+        var j = Math.floor(yin + s);
+        var t = (i + j) * G2;
+        var X0 = i - t; // Unskew the cell origin back to (x,y) space
+        var Y0 = j - t;
+        var x0 = xin - X0; // The x,y distances from the cell origin
+        var y0 = yin - Y0;
+        // For the 2D case, the simplex shape is an equilateral triangle.
+        // Determine which simplex we are in.
+        var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
+        if (x0 > y0) {
+          i1 = 1;
+          j1 = 0;
+        } // lower triangle, XY order: (0,0)->(1,0)->(1,1)
+        else {
+          i1 = 0;
+          j1 = 1;
+        } // upper triangle, YX order: (0,0)->(0,1)->(1,1)
+        // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
+        // a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
+        // c = (3-sqrt(3))/6
+        var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
+        var y1 = y0 - j1 + G2;
+        var x2 = x0 - 1.0 + 2.0 * G2; // Offsets for last corner in (x,y) unskewed coords
+        var y2 = y0 - 1.0 + 2.0 * G2;
+        // Work out the hashed gradient indices of the three simplex corners
+        var ii = i & 255;
+        var jj = j & 255;
+        // Calculate the contribution from the three corners
+        var t0 = 0.5 - x0 * x0 - y0 * y0;
+        if (t0 >= 0) {
+          var gi0 = permMod12[ii + perm[jj]] * 3;
+          t0 *= t0;
+          n0 = t0 * t0 * (grad3[gi0] * x0 + grad3[gi0 + 1] * y0); // (x,y) of grad3 used for 2D gradient
+        }
+        var t1 = 0.5 - x1 * x1 - y1 * y1;
+        if (t1 >= 0) {
+          var gi1 = permMod12[ii + i1 + perm[jj + j1]] * 3;
+          t1 *= t1;
+          n1 = t1 * t1 * (grad3[gi1] * x1 + grad3[gi1 + 1] * y1);
+        }
+        var t2 = 0.5 - x2 * x2 - y2 * y2;
+        if (t2 >= 0) {
+          var gi2 = permMod12[ii + 1 + perm[jj + 1]] * 3;
+          t2 *= t2;
+          n2 = t2 * t2 * (grad3[gi2] * x2 + grad3[gi2 + 1] * y2);
+        }
+        // Add contributions from each corner to get the final noise value.
+        // The result is scaled to return values in the interval [-1,1].
+        return 70.0 * (n0 + n1 + n2);
+      },
+    // 3D simplex noise
+    noise3D: function(xin, yin, zin) {
+        var permMod12 = this.permMod12;
+        var perm = this.perm;
+        var grad3 = this.grad3;
+        var n0, n1, n2, n3; // Noise contributions from the four corners
+        // Skew the input space to determine which simplex cell we're in
+        var s = (xin + yin + zin) * F3; // Very nice and simple skew factor for 3D
+        var i = Math.floor(xin + s);
+        var j = Math.floor(yin + s);
+        var k = Math.floor(zin + s);
+        var t = (i + j + k) * G3;
+        var X0 = i - t; // Unskew the cell origin back to (x,y,z) space
+        var Y0 = j - t;
+        var Z0 = k - t;
+        var x0 = xin - X0; // The x,y,z distances from the cell origin
+        var y0 = yin - Y0;
+        var z0 = zin - Z0;
+        // For the 3D case, the simplex shape is a slightly irregular tetrahedron.
+        // Determine which simplex we are in.
+        var i1, j1, k1; // Offsets for second corner of simplex in (i,j,k) coords
+        var i2, j2, k2; // Offsets for third corner of simplex in (i,j,k) coords
+        if (x0 >= y0) {
+          if (y0 >= z0) {
+            i1 = 1;
+            j1 = 0;
+            k1 = 0;
+            i2 = 1;
+            j2 = 1;
+            k2 = 0;
+          } // X Y Z order
+          else if (x0 >= z0) {
+            i1 = 1;
+            j1 = 0;
+            k1 = 0;
+            i2 = 1;
+            j2 = 0;
+            k2 = 1;
+          } // X Z Y order
+          else {
+            i1 = 0;
+            j1 = 0;
+            k1 = 1;
+            i2 = 1;
+            j2 = 0;
+            k2 = 1;
+          } // Z X Y order
+        }
+        else { // x0<y0
+          if (y0 < z0) {
+            i1 = 0;
+            j1 = 0;
+            k1 = 1;
+            i2 = 0;
+            j2 = 1;
+            k2 = 1;
+          } // Z Y X order
+          else if (x0 < z0) {
+            i1 = 0;
+            j1 = 1;
+            k1 = 0;
+            i2 = 0;
+            j2 = 1;
+            k2 = 1;
+          } // Y Z X order
+          else {
+            i1 = 0;
+            j1 = 1;
+            k1 = 0;
+            i2 = 1;
+            j2 = 1;
+            k2 = 0;
+          } // Y X Z order
+        }
+        // A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
+        // a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
+        // a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
+        // c = 1/6.
+        var x1 = x0 - i1 + G3; // Offsets for second corner in (x,y,z) coords
+        var y1 = y0 - j1 + G3;
+        var z1 = z0 - k1 + G3;
+        var x2 = x0 - i2 + 2.0 * G3; // Offsets for third corner in (x,y,z) coords
+        var y2 = y0 - j2 + 2.0 * G3;
+        var z2 = z0 - k2 + 2.0 * G3;
+        var x3 = x0 - 1.0 + 3.0 * G3; // Offsets for last corner in (x,y,z) coords
+        var y3 = y0 - 1.0 + 3.0 * G3;
+        var z3 = z0 - 1.0 + 3.0 * G3;
+        // Work out the hashed gradient indices of the four simplex corners
+        var ii = i & 255;
+        var jj = j & 255;
+        var kk = k & 255;
+        // Calculate the contribution from the four corners
+        var t0 = 0.6 - x0 * x0 - y0 * y0 - z0 * z0;
+        if (t0 < 0) n0 = 0.0;
+        else {
+          var gi0 = permMod12[ii + perm[jj + perm[kk]]] * 3;
+          t0 *= t0;
+          n0 = t0 * t0 * (grad3[gi0] * x0 + grad3[gi0 + 1] * y0 + grad3[gi0 + 2] * z0);
+        }
+        var t1 = 0.6 - x1 * x1 - y1 * y1 - z1 * z1;
+        if (t1 < 0) n1 = 0.0;
+        else {
+          var gi1 = permMod12[ii + i1 + perm[jj + j1 + perm[kk + k1]]] * 3;
+          t1 *= t1;
+          n1 = t1 * t1 * (grad3[gi1] * x1 + grad3[gi1 + 1] * y1 + grad3[gi1 + 2] * z1);
+        }
+        var t2 = 0.6 - x2 * x2 - y2 * y2 - z2 * z2;
+        if (t2 < 0) n2 = 0.0;
+        else {
+          var gi2 = permMod12[ii + i2 + perm[jj + j2 + perm[kk + k2]]] * 3;
+          t2 *= t2;
+          n2 = t2 * t2 * (grad3[gi2] * x2 + grad3[gi2 + 1] * y2 + grad3[gi2 + 2] * z2);
+        }
+        var t3 = 0.6 - x3 * x3 - y3 * y3 - z3 * z3;
+        if (t3 < 0) n3 = 0.0;
+        else {
+          var gi3 = permMod12[ii + 1 + perm[jj + 1 + perm[kk + 1]]] * 3;
+          t3 *= t3;
+          n3 = t3 * t3 * (grad3[gi3] * x3 + grad3[gi3 + 1] * y3 + grad3[gi3 + 2] * z3);
+        }
+        // Add contributions from each corner to get the final noise value.
+        // The result is scaled to stay just inside [-1,1]
+        return 32.0 * (n0 + n1 + n2 + n3);
+      },
+    // 4D simplex noise, better simplex rank ordering method 2012-03-09
+    noise4D: function(x, y, z, w) {
+        var permMod12 = this.permMod12;
+        var perm = this.perm;
+        var grad4 = this.grad4;
+
+        var n0, n1, n2, n3, n4; // Noise contributions from the five corners
+        // Skew the (x,y,z,w) space to determine which cell of 24 simplices we're in
+        var s = (x + y + z + w) * F4; // Factor for 4D skewing
+        var i = Math.floor(x + s);
+        var j = Math.floor(y + s);
+        var k = Math.floor(z + s);
+        var l = Math.floor(w + s);
+        var t = (i + j + k + l) * G4; // Factor for 4D unskewing
+        var X0 = i - t; // Unskew the cell origin back to (x,y,z,w) space
+        var Y0 = j - t;
+        var Z0 = k - t;
+        var W0 = l - t;
+        var x0 = x - X0; // The x,y,z,w distances from the cell origin
+        var y0 = y - Y0;
+        var z0 = z - Z0;
+        var w0 = w - W0;
+        // For the 4D case, the simplex is a 4D shape I won't even try to describe.
+        // To find out which of the 24 possible simplices we're in, we need to
+        // determine the magnitude ordering of x0, y0, z0 and w0.
+        // Six pair-wise comparisons are performed between each possible pair
+        // of the four coordinates, and the results are used to rank the numbers.
+        var rankx = 0;
+        var ranky = 0;
+        var rankz = 0;
+        var rankw = 0;
+        if (x0 > y0) rankx++;
+        else ranky++;
+        if (x0 > z0) rankx++;
+        else rankz++;
+        if (x0 > w0) rankx++;
+        else rankw++;
+        if (y0 > z0) ranky++;
+        else rankz++;
+        if (y0 > w0) ranky++;
+        else rankw++;
+        if (z0 > w0) rankz++;
+        else rankw++;
+        var i1, j1, k1, l1; // The integer offsets for the second simplex corner
+        var i2, j2, k2, l2; // The integer offsets for the third simplex corner
+        var i3, j3, k3, l3; // The integer offsets for the fourth simplex corner
+        // simplex[c] is a 4-vector with the numbers 0, 1, 2 and 3 in some order.
+        // Many values of c will never occur, since e.g. x>y>z>w makes x<z, y<w and x<w
+        // impossible. Only the 24 indices which have non-zero entries make any sense.
+        // We use a thresholding to set the coordinates in turn from the largest magnitude.
+        // Rank 3 denotes the largest coordinate.
+        i1 = rankx >= 3 ? 1 : 0;
+        j1 = ranky >= 3 ? 1 : 0;
+        k1 = rankz >= 3 ? 1 : 0;
+        l1 = rankw >= 3 ? 1 : 0;
+        // Rank 2 denotes the second largest coordinate.
+        i2 = rankx >= 2 ? 1 : 0;
+        j2 = ranky >= 2 ? 1 : 0;
+        k2 = rankz >= 2 ? 1 : 0;
+        l2 = rankw >= 2 ? 1 : 0;
+        // Rank 1 denotes the second smallest coordinate.
+        i3 = rankx >= 1 ? 1 : 0;
+        j3 = ranky >= 1 ? 1 : 0;
+        k3 = rankz >= 1 ? 1 : 0;
+        l3 = rankw >= 1 ? 1 : 0;
+        // The fifth corner has all coordinate offsets = 1, so no need to compute that.
+        var x1 = x0 - i1 + G4; // Offsets for second corner in (x,y,z,w) coords
+        var y1 = y0 - j1 + G4;
+        var z1 = z0 - k1 + G4;
+        var w1 = w0 - l1 + G4;
+        var x2 = x0 - i2 + 2.0 * G4; // Offsets for third corner in (x,y,z,w) coords
+        var y2 = y0 - j2 + 2.0 * G4;
+        var z2 = z0 - k2 + 2.0 * G4;
+        var w2 = w0 - l2 + 2.0 * G4;
+        var x3 = x0 - i3 + 3.0 * G4; // Offsets for fourth corner in (x,y,z,w) coords
+        var y3 = y0 - j3 + 3.0 * G4;
+        var z3 = z0 - k3 + 3.0 * G4;
+        var w3 = w0 - l3 + 3.0 * G4;
+        var x4 = x0 - 1.0 + 4.0 * G4; // Offsets for last corner in (x,y,z,w) coords
+        var y4 = y0 - 1.0 + 4.0 * G4;
+        var z4 = z0 - 1.0 + 4.0 * G4;
+        var w4 = w0 - 1.0 + 4.0 * G4;
+        // Work out the hashed gradient indices of the five simplex corners
+        var ii = i & 255;
+        var jj = j & 255;
+        var kk = k & 255;
+        var ll = l & 255;
+        // Calculate the contribution from the five corners
+        var t0 = 0.6 - x0 * x0 - y0 * y0 - z0 * z0 - w0 * w0;
+        if (t0 < 0) n0 = 0.0;
+        else {
+          var gi0 = (perm[ii + perm[jj + perm[kk + perm[ll]]]] % 32) * 4;
+          t0 *= t0;
+          n0 = t0 * t0 * (grad4[gi0] * x0 + grad4[gi0 + 1] * y0 + grad4[gi0 + 2] * z0 + grad4[gi0 + 3] * w0);
+        }
+        var t1 = 0.6 - x1 * x1 - y1 * y1 - z1 * z1 - w1 * w1;
+        if (t1 < 0) n1 = 0.0;
+        else {
+          var gi1 = (perm[ii + i1 + perm[jj + j1 + perm[kk + k1 + perm[ll + l1]]]] % 32) * 4;
+          t1 *= t1;
+          n1 = t1 * t1 * (grad4[gi1] * x1 + grad4[gi1 + 1] * y1 + grad4[gi1 + 2] * z1 + grad4[gi1 + 3] * w1);
+        }
+        var t2 = 0.6 - x2 * x2 - y2 * y2 - z2 * z2 - w2 * w2;
+        if (t2 < 0) n2 = 0.0;
+        else {
+          var gi2 = (perm[ii + i2 + perm[jj + j2 + perm[kk + k2 + perm[ll + l2]]]] % 32) * 4;
+          t2 *= t2;
+          n2 = t2 * t2 * (grad4[gi2] * x2 + grad4[gi2 + 1] * y2 + grad4[gi2 + 2] * z2 + grad4[gi2 + 3] * w2);
+        }
+        var t3 = 0.6 - x3 * x3 - y3 * y3 - z3 * z3 - w3 * w3;
+        if (t3 < 0) n3 = 0.0;
+        else {
+          var gi3 = (perm[ii + i3 + perm[jj + j3 + perm[kk + k3 + perm[ll + l3]]]] % 32) * 4;
+          t3 *= t3;
+          n3 = t3 * t3 * (grad4[gi3] * x3 + grad4[gi3 + 1] * y3 + grad4[gi3 + 2] * z3 + grad4[gi3 + 3] * w3);
+        }
+        var t4 = 0.6 - x4 * x4 - y4 * y4 - z4 * z4 - w4 * w4;
+        if (t4 < 0) n4 = 0.0;
+        else {
+          var gi4 = (perm[ii + 1 + perm[jj + 1 + perm[kk + 1 + perm[ll + 1]]]] % 32) * 4;
+          t4 *= t4;
+          n4 = t4 * t4 * (grad4[gi4] * x4 + grad4[gi4 + 1] * y4 + grad4[gi4 + 2] * z4 + grad4[gi4 + 3] * w4);
+        }
+        // Sum up and scale the result to cover the range [-1,1]
+        return 27.0 * (n0 + n1 + n2 + n3 + n4);
+      }
+  };
+
+function buildPermutationTable(random) {
+  var i;
+  var p = new Uint8Array(256);
+  for (i = 0; i < 256; i++) {
+    p[i] = i;
+  }
+  for (i = 0; i < 255; i++) {
+    var r = i + 1 + ~~(random() * (255 - i));
+    var aux = p[i];
+    p[i] = p[r];
+    p[r] = aux;
+  }
+  return p;
+}
+SimplexNoise._buildPermutationTable = buildPermutationTable;
+
+// amd
+if (true) !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {return SimplexNoise;}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+// common js
+if (true) exports.SimplexNoise = SimplexNoise;
+// browser
+else if (typeof window !== 'undefined') window.SimplexNoise = SimplexNoise;
+// nodejs
+if (true) {
+  module.exports = SimplexNoise;
+}
+
+})();
+
+
+/***/ }),
+/* 344 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 /**
@@ -56636,11 +57078,11 @@ OBJLoader.prototype = {
 exports.OBJLoader = OBJLoader;
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_three__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_three__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_three___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_three__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrackballControls; });
 /**
@@ -57273,7 +57715,7 @@ TrackballControls.prototype.constructor = TrackballControls;
 
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var self = self || {};// File:src/Three.js
@@ -97851,7 +98293,7 @@ if (true) {
 
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -97860,7 +98302,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -97869,7 +98311,7 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98014,7 +98456,7 @@ function saveScene( scene )
 };
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98039,7 +98481,7 @@ var OrderError = function (_Error) {
 //# sourceMappingURL=order.js.map
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98066,7 +98508,7 @@ var OverrideError = function (_Error) {
 //# sourceMappingURL=override.js.map
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98126,18 +98568,18 @@ function supported() {
 //# sourceMappingURL=localStore.js.map
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__localStore__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__localStore__ = __webpack_require__(352);
 /* unused harmony reexport Storage */
 
 
 //# sourceMappingURL=storage.js.map
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98165,7 +98607,7 @@ function rgba(r, g, b, a) {
 //# sourceMappingURL=drawingUtils.js.map
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98174,6 +98616,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["clamp"] = clamp;
 /* harmony export (immutable) */ __webpack_exports__["dist"] = dist;
 /* harmony export (immutable) */ __webpack_exports__["lerp"] = lerp;
+/* harmony export (immutable) */ __webpack_exports__["smoothStep"] = smoothStep;
 var TWO_PI = Math.PI * 2;
 function clamp(x, min, max) {
     return Math.min(Math.max(x, min), max);
@@ -98190,16 +98633,20 @@ function lerp(one, two, t) {
     return one + (two - one) * t;
 }
 ;
+function smoothStep(edge0, edge1, x) {
+    x = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+    return x * x * x * (x * (x * 6 - 15) + 10);
+}
 //# sourceMappingURL=mathUtils.js.map
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domUtils__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__drawingUtils__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mathUtils__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__drawingUtils__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mathUtils__ = __webpack_require__(355);
 /* unused harmony reexport DomUtils */
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__drawingUtils__; });
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__mathUtils__; });
@@ -98215,7 +98662,7 @@ function lerp(one, two, t) {
 //# sourceMappingURL=util.js.map
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98303,7 +98750,7 @@ var catmullRomSpline = function(controlPoints, options) {
 
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98379,7 +98826,7 @@ var Circle = function (_Point) {
 //# sourceMappingURL=circle.js.map
 
 /***/ }),
-/* 358 */
+/* 359 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98420,7 +98867,7 @@ var DraggableRect = function (_DraggablePolygon) {
 //# sourceMappingURL=draggableRect.js.map
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98459,18 +98906,18 @@ var DraggableTriangle = function (_DraggablePolygon) {
 //# sourceMappingURL=draggableTriangle.js.map
 
 /***/ }),
-/* 360 */
+/* 361 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__draggablePoint__ = __webpack_require__(99);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__draggablePoint__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__draggablePoint__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__draggableRect__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__draggableRect__ = __webpack_require__(359);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__draggableRect__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__draggablePolygon__ = __webpack_require__(100);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__draggablePolygon__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__draggableTriangle__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__draggableTriangle__ = __webpack_require__(360);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__draggableTriangle__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__snapGrid__ = __webpack_require__(140);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_4__snapGrid__["a"]; });
@@ -98482,7 +98929,7 @@ var DraggableTriangle = function (_DraggablePolygon) {
 //# sourceMappingURL=interactive.js.map
 
 /***/ }),
-/* 361 */
+/* 362 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98660,7 +99107,7 @@ var PolygonGrid = function () {
 //# sourceMappingURL=polygonGrid.js.map
 
 /***/ }),
-/* 362 */
+/* 363 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98720,7 +99167,7 @@ var RegularPolygon = function (_Polygon) {
 //# sourceMappingURL=regularPolygon.js.map
 
 /***/ }),
-/* 363 */
+/* 364 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98816,7 +99263,7 @@ var Triangle = function () {
 //# sourceMappingURL=triangle.js.map
 
 /***/ }),
-/* 364 */
+/* 365 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98838,7 +99285,7 @@ window.QC = QC;
 //# sourceMappingURL=quickCanvas.js.map
 
 /***/ }),
-/* 365 */
+/* 366 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98921,7 +99368,7 @@ var InteractionManager = function () {
 //# sourceMappingURL=interactionManager.js.map
 
 /***/ }),
-/* 366 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define, KeyboardEvent, module */
@@ -99052,7 +99499,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global defi
 
 
 /***/ }),
-/* 367 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(148);
