@@ -32,8 +32,9 @@ export class Corrugator extends BufferDistortion{
     out.normalize();
     let direction = normal.lerp(out, this["angle"]);
 
-    let ny = this.noise.noise2D(0.5*this["distortionDensity"],uv.y*this["distortionDensity"]);
-    let nx = this.noise.noise2D(uv.x*this["distortionDensity"],uv.y*this["distortionDensity"]) * BJMath.smoothStep(0.0, (10.0-this["distortionDensity"])/100.0+0.03, uv.x)* BJMath.smoothStep(0.0, (10.0-this["distortionDensity"])/100.0+0.03, 1.0-uv.x);
+    let uvx = (BJMath.smoothStep(0.9, 1.0, uv.x)) * BJMath.smoothStep(0.9, 1.0, 1.0-uv.x);
+    let ny = this.noise.noise2D(uvx*this["distortionDensity"],uv.y*this["distortionDensity"]);
+    let nx = this.noise.noise2D(uv.x*this["distortionDensity"],uv.y*this["distortionDensity"]) * BJMath.smoothStep(0.0, (10.0-this["distortionDensity"])/100.0+0.02, uv.x)* BJMath.smoothStep(0.0, (10.0-this["distortionDensity"])/100.0+0.02, 1.0-uv.x);
 
 
     return direction.multiplyScalar((Math.sin(nx+i/(i2+1))*Math.cos(ny+j))*this["amplitude"]);
@@ -50,7 +51,7 @@ let UIDefinition:any = {
     "attributes":{
         "type":"range",
         "min":2.0,
-        "max":4.0,
+        "max":8.0,
         "value":3,
         "step":0.001
     }

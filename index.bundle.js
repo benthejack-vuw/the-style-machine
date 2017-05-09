@@ -50775,8 +50775,9 @@ var Corrugator = function (_BufferDistortion) {
             var out = new __WEBPACK_IMPORTED_MODULE_2_three__["Vector3"](position.x, 0, position.z);
             out.normalize();
             var direction = normal.lerp(out, this["angle"]);
-            var ny = this.noise.noise2D(0.5 * this["distortionDensity"], uv.y * this["distortionDensity"]);
-            var nx = this.noise.noise2D(uv.x * this["distortionDensity"], uv.y * this["distortionDensity"]) * __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.0, (10.0 - this["distortionDensity"]) / 100.0 + 0.03, uv.x) * __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.0, (10.0 - this["distortionDensity"]) / 100.0 + 0.03, 1.0 - uv.x);
+            var uvx = __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.9, 1.0, uv.x) * __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.9, 1.0, 1.0 - uv.x);
+            var ny = this.noise.noise2D(uvx * this["distortionDensity"], uv.y * this["distortionDensity"]);
+            var nx = this.noise.noise2D(uv.x * this["distortionDensity"], uv.y * this["distortionDensity"]) * __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.0, (10.0 - this["distortionDensity"]) / 100.0 + 0.02, uv.x) * __WEBPACK_IMPORTED_MODULE_1_bj_utils__["BJMath"].smoothStep(0.0, (10.0 - this["distortionDensity"]) / 100.0 + 0.02, 1.0 - uv.x);
             return direction.multiplyScalar(Math.sin(nx + i / (i2 + 1)) * Math.cos(ny + j) * this["amplitude"]);
         }
     }]);
@@ -50791,7 +50792,7 @@ var UIDefinition = {
         "attributes": {
             "type": "range",
             "min": 2.0,
-            "max": 4.0,
+            "max": 8.0,
             "value": 3,
             "step": 0.001
         }
