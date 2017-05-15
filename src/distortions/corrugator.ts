@@ -33,8 +33,8 @@ export class Corrugator extends BufferDistortion{
     let direction = normal.lerp(out, this["angle"]);
 
     let uvx = (BJMath.smoothStep(0.9, 1.0, uv.x)) * BJMath.smoothStep(0.9, 1.0, 1.0-uv.x);
-    let ny = this.noise.noise2D(uvx*this["distortionDensity"],uv.y*this["distortionDensity"]);
-    let nx = this.noise.noise2D(uv.x*this["distortionDensity"],uv.y*this["distortionDensity"]) * BJMath.smoothStep(0.0, (10.0-this["distortionDensity"])/100.0+0.02, uv.x)* BJMath.smoothStep(0.0, (10.0-this["distortionDensity"])/100.0+0.02, 1.0-uv.x);
+    let ny = this.noise.noise2D(uvx*this["liquifyFrequency"],uv.y*this["liquifyFrequency"]) * this["liquifyMultiplier"];
+    let nx = this.noise.noise2D(uv.x*this["liquifyFrequency"],uv.y*this["liquifyFrequency"]) * BJMath.smoothStep(0.0, (10.0-this["liquifyFrequency"])/100.0+0.02, uv.x)* BJMath.smoothStep(0.0, (10.0-this["liquifyFrequency"])/100.0+0.02, 1.0-uv.x) * this["liquifyMultiplier"];
 
 
     return direction.multiplyScalar((Math.sin(nx+i/(i2+1))*Math.cos(ny+j))*this["amplitude"]);
@@ -44,15 +44,28 @@ export class Corrugator extends BufferDistortion{
 
 
 let UIDefinition:any = {
-  "distortion-density":{
-    "variable":"distortionDensity",
-    "label":"Ben says: liquify",
+  "liquifyFreq":{
+    "variable":"liquifyFrequency",
+    "label":"Ben says: liquify frequency",
     "listener":"input",
     "attributes":{
         "type":"range",
         "min":2.0,
         "max":8.0,
         "value":3,
+        "step":0.001
+    }
+  },
+
+  "liquifyMult":{
+    "variable":"liquifyMultiplier",
+    "label":"liquify strength",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":10,
+        "value":1.0,
         "step":0.001
     }
   },

@@ -299,7 +299,7 @@ export class DistortionAggregator extends UIObject{
       let n_i = n.clone();
       let n_t = n.clone();
       n_i.multiplyScalar(minOffset*pinch);
-      n_t.multiplyScalar(this["expandInner"]);
+      n_t.multiplyScalar(this["expandInner"]*pinch);
       n_i.add(n_t);
       innerPos.add(n_i);
 
@@ -307,7 +307,7 @@ export class DistortionAggregator extends UIObject{
       let n_o = n.clone();
       n_t = n.clone();
       n_o.multiplyScalar(maxOffset*pinch);
-      n_t.multiplyScalar(this["expandOuter"]);
+      n_t.multiplyScalar(this["expandOuter"]*pinch);
       n_o.add(n_t);
       outerPos.add(n_o);
 

@@ -53,7 +53,7 @@ window.addEventListener('load', function(){
 
 	function updateLathe(){
 		updateMesh(latheBuilder.build());
-		distorter.shells = latheBuilder.build(2);
+		distorter.shells = latheBuilder.build();
 		distorter.apply();
 	}
 
