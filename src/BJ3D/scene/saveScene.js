@@ -9,8 +9,8 @@ import {
 } from "three"
 
 
-let vector = new Vector3();
-let normalMatrixWorld = new Matrix3();
+var vector = new Vector3();
+var normalMatrixWorld = new Matrix3();
 
 export function saveScene( scene )
 {
@@ -21,9 +21,9 @@ export function saveScene( scene )
 
 	scene.traverse( function ( object ) {
 		console.log(object)
-		if ( object instanceof Mesh ) {			
+		if ( object instanceof Mesh ) {
 			// if object is hidden - exit
-			if(object.visible == false) return; 
+			if(object.visible == false) return;
 
 			var geometry = object.geometry;
 			var matrixWorld = object.matrixWorld;
@@ -35,7 +35,7 @@ export function saveScene( scene )
 
 				var vertices = geometry.vertices;
 				var faces = geometry.faces;
-				
+
 				normalMatrixWorld.getNormalMatrix( matrixWorld );
 
 				if(typeof faces != 'undefined'){
@@ -56,7 +56,7 @@ export function saveScene( scene )
 								output += '\t\t\tvertex ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
 							} else {
 								vector.copy( vertices[ vertexIndex ] ); //.applyMatrix4( matrixWorld );
-								
+
 								// see https//github.com/mrdoob/three.js/issues/3187
 								var boneIndices = [
 									geometry.skinIndices[vertexIndex].x,
@@ -64,14 +64,14 @@ export function saveScene( scene )
 									geometry.skinIndices[vertexIndex].z,
 									geometry.skinIndices[vertexIndex].w
 								];
-								
+
 								var weights = [
 									geometry.skinWeights[vertexIndex].x,
 									geometry.skinWeights[vertexIndex].y,
 									geometry.skinWeights[vertexIndex].z,
 									geometry.skinWeights[vertexIndex].w
 								];
-								
+
 								var inverses = [
 									skeleton.boneInverses[ boneIndices[0] ],
 									skeleton.boneInverses[ boneIndices[1] ],
@@ -87,7 +87,7 @@ export function saveScene( scene )
 								];
 
 								//this checks to see if the mesh has any morphTargets - jc
-								if (geometry.morphTargets !== 'undefined') {										
+								if (geometry.morphTargets !== 'undefined') {
 									var morphMatricesX = [];
 									var morphMatricesY = [];
 									var morphMatricesZ = [];
@@ -101,7 +101,7 @@ export function saveScene( scene )
 										morphMatricesInfluence[mt] = morphTargetInfluences[mt];
 									}
 								}
-								
+
 								var finalVector = new Vector4();
 
 								if (mesh.geometry.morphTargets !== 'undefined') {
