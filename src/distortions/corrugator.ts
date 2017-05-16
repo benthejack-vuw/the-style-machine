@@ -32,12 +32,17 @@ export class Corrugator extends BufferDistortion{
     out.normalize();
     let direction = normal.lerp(out, this["angle"]);
 
-    let uvx = (BJMath.smoothStep(0.9, 1.0, uv.x)) * BJMath.smoothStep(0.9, 1.0, 1.0-uv.x);
-    let ny = this.noise.noise2D(uvx*this["liquifyFrequency"],uv.y*this["liquifyFrequency"]) * this["liquifyMultiplier"];
-    let nx = this.noise.noise2D(uv.x*this["liquifyFrequency"],uv.y*this["liquifyFrequency"]) * BJMath.smoothStep(0.0, (10.0-this["liquifyFrequency"])/100.0+0.02, uv.x)* BJMath.smoothStep(0.0, (10.0-this["liquifyFrequency"])/100.0+0.02, 1.0-uv.x) * this["liquifyMultiplier"];
+
+    let pi = 3.14159;
+    let nx=Math.cos(uv.x*2*pi)*this["liquifyFrequency"]
+    let ny=Math.cos(uv.y*2*pi)*this["liquifyFrequency"]
+    let nz=Math.sin(uv.x*2*pi)*this["liquifyFrequency"]
+    let nw=Math.sin(uv.y*2*pi)*this["liquifyFrequency"]
+    let noise = this.noise.noise4D(nx,ny,nz,nw)*this["liquifyMultiplier"];
 
 
-    return direction.multiplyScalar((Math.sin(nx+i/(i2+1))*Math.cos(ny+j))*this["amplitude"]);
+
+    return direction.multiplyScalar((Math.sin(noise+i/(i2+1))*Math.cos(noise+j))*this["amplitude"]);
   }
 
 }
@@ -50,9 +55,9 @@ let UIDefinition:any = {
     "listener":"input",
     "attributes":{
         "type":"range",
-        "min":2.0,
-        "max":8.0,
-        "value":3,
+        "min":0.01,
+        "max":0.75,
+        "value":0.375,
         "step":0.001
     }
   },
