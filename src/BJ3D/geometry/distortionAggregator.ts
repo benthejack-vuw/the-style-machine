@@ -49,6 +49,18 @@ let distortionParams = {
       "click":"toggleInnerShell"
     }
   },
+  "shell material":{
+     "attributes":{
+       "type":"button",
+       "value":"swap materials",
+       "style":"width:100%;"
+     },
+     "callbacks":{
+       "click":"swapMaterials"
+     }
+   },
+
+
   "outer-expand":{
     "variable":"expandOuter",
     "label":"expand outer shell",
@@ -107,36 +119,29 @@ export class DistortionAggregator extends UIObject{
   protected _outerShell:BufferGeometry;
 
   protected _distortions:BufferDistortion[];
+  protected _surfaceDistortions:BufferDistortion[];
 
-  private _vertexAttribute:THREE.BufferAttribute;
-  private _innerAttribute:THREE.BufferAttribute;
-  private _outerAttribute:THREE.BufferAttribute;
-
-
-  private _positions:any[];
   private _startPositions:any[];
-
   private _shellPositions:any[];
-  private _shellNormals:any[];
-  private _shellUVs:any[];
-  private _innerPositions:any[];
-  private _outerPositions:any[];
-  private _normals:any[];
-  private _uvs:any[];
 
   private _scene:Scene;
   private _bodyMesh:Mesh;
   private _innerMesh:Mesh;
   private _outerMesh:Mesh;
   private _bodyMaterial:MeshPhongMaterial;
-  private _innerMaterial:MeshBasicMaterial;
-  private _outerMaterial:MeshBasicMaterial;
+  private _shellMaterial:MeshBasicMaterial;
+
+  private _minOffset:number;
+  private _maxOffset:number;
+
+  private _displaySolidShells:boolean;
 
   constructor(geometry:BufferGeometry){
     super("distortions");
     this.buildUI(distortionParams);
 
     this._distortions = [];
+    this._surfaceDistortions = [];
 
     this._bodyMaterial = new MeshPhongMaterial( {
             color: 0x156289,
@@ -145,17 +150,16 @@ export class DistortionAggregator extends UIObject{
             shading: FlatShading
           } );
 
-    this._innerMaterial = new MeshBasicMaterial( {
+    this._shellMaterial = new MeshBasicMaterial( {
           color: 0xFFFFFF,
           side: DoubleSide,
           wireframe: true
     } );
 
-    this._outerMaterial = this._innerMaterial.clone();
-
+    this._displaySolidShells = false;
     this._bodyMesh = new Mesh(this._geometry, this._bodyMaterial);
-    this._innerMesh = new Mesh(this._innerShell, this._innerMaterial);
-    this._outerMesh = new Mesh(this._outerShell, this._outerMaterial);
+    this._innerMesh = new Mesh(this._innerShell, this._shellMaterial);
+    this._outerMesh = new Mesh(this._outerShell, this._shellMaterial);
 
     this.geometry = geometry;
     this.updateFunction(this.apply);
@@ -167,13 +171,8 @@ export class DistortionAggregator extends UIObject{
     this._innerShell = this._geometry.clone();
     this._outerShell = this._geometry.clone();
 
-    this._vertexAttribute = (<THREE.BufferAttribute>this._geometry.getAttribute('position'));
-    this._vertexAttribute.dynamic = true;
-
-    this._positions = <any[]>this._vertexAttribute.array;
-    this._normals = <any[]>this._geometry.getAttribute('normal').array;
-		this._uvs = <any[]>this._geometry.getAttribute('uv').array;
-    this._startPositions = this._positions.slice();
+    let vert_attr = <THREE.BufferAttribute>geometry.getAttribute('position')
+    this._startPositions = (<any[]>vert_attr.array).slice();
 
     this.shells = geometry;
     this._bodyMesh.geometry = this._geometry;
@@ -198,21 +197,30 @@ export class DistortionAggregator extends UIObject{
   public set shells(buffer:BufferGeometry){
     this._innerShell = buffer;
     this._outerShell = buffer.clone();
-
-    this._innerAttribute = (<THREE.BufferAttribute>this._innerShell.getAttribute('position'));
-    this._innerAttribute.dynamic = true;
-    this._outerAttribute = (<THREE.BufferAttribute>this._outerShell.getAttribute('position'));
-    this._outerAttribute.dynamic = true;
-
-
-    this._shellUVs = <any[]>this._innerShell.getAttribute('uv').array;
-    this._innerPositions = <any[]>this._innerAttribute.array;
-    this._outerPositions = <any[]>this._outerAttribute.array;
-    this._shellPositions = this._innerPositions.slice();
-    this._shellNormals = <any[]>this._innerShell.getAttribute('normal').array;
-
     this._innerMesh.geometry = this._innerShell;
     this._outerMesh.geometry = this._outerShell;
+
+    let shellAttr = (<THREE.BufferAttribute>this._innerShell.getAttribute('position'));
+    this._shellPositions = (<any[]>shellAttr.array).slice();
+
+  }
+
+  public swapMaterials = () => {
+
+    this._displaySolidShells = !this._displaySolidShells;
+
+
+    if(this._displaySolidShells){
+      this._innerMesh.material = this._bodyMaterial;
+      this._outerMesh.material = this._bodyMaterial;
+      this._bodyMesh.material = this._shellMaterial;
+    }
+    else{
+      this._outerMesh.material = this._shellMaterial;
+      this._innerMesh.material = this._shellMaterial;
+      this._bodyMesh.material = this._bodyMaterial;
+    }
+
 
   }
 
@@ -245,60 +253,104 @@ export class DistortionAggregator extends UIObject{
     distortion.updateFunction(this.apply)
   }
 
+  public addSurfaceDistortion(distortion:BufferDistortion){
+    this._surfaceDistortions.push(distortion);
+    distortion.updateFunction(this.apply)
+  }
+
   public apply = () => {
-    console.log(this["expandInner"], this["expandOuter"])
+    this.apply_distortions(this._geometry, this._startPositions, this._distortions, true);
+    this.expand_shells();
+
+    let outerAttr = (<THREE.BufferAttribute>this._outerShell.getAttribute('position'));
+    let temp_start = (<any[]>outerAttr.array).slice();
+    this.apply_distortions(this._outerShell, temp_start, this._surfaceDistortions, true);
+
+  }
+
+  public apply_distortions = (geometry:BufferGeometry, startPositions:any[], distortions:any[], doOffset:boolean = false) => {
+    let vert_attr = (<THREE.BufferAttribute>geometry.getAttribute('position'));
+    vert_attr.dynamic = true;
+
+    let positions = <any[]>vert_attr.array;
+    let normals = <any[]>geometry.getAttribute('normal').array;
+    let uvs = <any[]>geometry.getAttribute('uv').array;
 
     let index:number;
     let position:Vector3, normal:Vector3, uv:Vector2;
     let newPosition:Vector3, multipliedPosition:Vector3;
     newPosition = new Vector3();
-    let maxOffset = -10000000000;
-    let minOffset = 10000000000;
+
+    if(doOffset){
+      this._maxOffset = -10000000000;
+      this._minOffset = 10000000000;
+    }
+
     let accumulator;
     let pinch:number;
     let distortion;
 
-    for(let i = 0; i < this._positions.length; i+=3){
+    for(let i = 0; i < positions.length; i+=3){
       index = i/3;
-      position = new Vector3(this._startPositions[i], this._startPositions[i+1], this._startPositions[i+2]);
+      position = new Vector3(startPositions[i], startPositions[i+1], startPositions[i+2]);
       newPosition.copy(position)
-      normal = new Vector3(this._normals[i], this._normals[i+1], this._normals[i+2]);
+      normal = new Vector3(normals[i], normals[i+1], normals[i+2]);
       let n = normal.clone();
       n.normalize();
-      uv = new Vector2(this._uvs[index*2], this._uvs[index*2+1]);
+      uv = new Vector2(uvs[index*2], uvs[index*2+1]);
       accumulator = 0;
 
       pinch = (this["topConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 :BJMath.smoothStep(0, this["bottomConvergence"],  uv.y));
 
-      for(var j = 0; j < this._distortions.length; ++j){
-
-        distortion = this._distortions[j].vertexDistortionFunction(position, normal, uv, index).multiplyScalar(this._distortions[j].multiplier);
+      for(var j = 0; j < distortions.length; ++j){
+        distortion = distortions[j].vertexDistortionFunction(position, normal, uv, index).multiplyScalar(distortions[j].multiplier);
         distortion.multiplyScalar(pinch);
         multipliedPosition = distortion;
         accumulator +=  multipliedPosition.dot(n);
         newPosition.add(multipliedPosition);
       }
 
-      minOffset = Math.min(minOffset, accumulator);
-      maxOffset = Math.max(maxOffset, accumulator);
+      if(doOffset){
+        this._minOffset = Math.min(this._minOffset, accumulator);
+        this._maxOffset = Math.max(this._maxOffset, accumulator);
+      }
 
-      this._positions[i] = newPosition.x;
-      this._positions[i+1] = newPosition.y;
-      this._positions[i+2] = newPosition.z;
+      positions[i] = newPosition.x;
+      positions[i+1] = newPosition.y;
+      positions[i+2] = newPosition.z;
     }
 
-    for(let i = 0; i < this._innerPositions.length; i+=3){
+    vert_attr.needsUpdate = true;
+  }
+
+  public expand_shells = () => {
+
+    let innerAttr = (<THREE.BufferAttribute>this._innerShell.getAttribute('position'));
+    innerAttr.dynamic = true;
+    let outerAttr = (<THREE.BufferAttribute>this._outerShell.getAttribute('position'));
+    outerAttr.dynamic = true;
+
+    let shellUVs = <any[]>this._innerShell.getAttribute('uv').array;
+    let innerPositions = <any[]>innerAttr.array;
+    let outerPositions = <any[]>outerAttr.array;
+    let shellNormals = <any[]>this._innerShell.getAttribute('normal').array;
+
+    let index:number;
+    let position:Vector3, normal:Vector3, uv:Vector2;
+    let pinch:number;
+
+    for(let i = 0; i < innerPositions.length; i+=3){
       index = i/3;
       position = new Vector3(this._shellPositions[i], this._shellPositions[i+1], this._shellPositions[i+2]);
-      uv = new Vector2(this._shellUVs[index*2], this._shellUVs[index*2+1]);
-      normal = new Vector3(this._shellNormals[i], this._shellNormals[i+1], this._shellNormals[i+2]);
+      uv = new Vector2(shellUVs[index*2], shellUVs[index*2+1]);
+      normal = new Vector3(shellNormals[i], shellNormals[i+1], shellNormals[i+2]);
       pinch = (this["topConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["bottomConvergence"],  uv.y));
       let n = normal.clone();
       n.normalize();
       let innerPos = position.clone();
       let n_i = n.clone();
       let n_t = n.clone();
-      n_i.multiplyScalar(minOffset*pinch);
+      n_i.multiplyScalar(this._minOffset*pinch);
       n_t.multiplyScalar(this["expandInner"]*pinch);
       n_i.add(n_t);
       innerPos.add(n_i);
@@ -306,25 +358,23 @@ export class DistortionAggregator extends UIObject{
       let outerPos = position.clone();
       let n_o = n.clone();
       n_t = n.clone();
-      n_o.multiplyScalar(maxOffset*pinch);
+      n_o.multiplyScalar(this._maxOffset*pinch);
       n_t.multiplyScalar(this["expandOuter"]*pinch);
       n_o.add(n_t);
       outerPos.add(n_o);
 
+      innerPositions[i] = innerPos.x;
+      innerPositions[i+1] = innerPos.y;
+      innerPositions[i+2] = innerPos.z;
 
-
-      this._innerPositions[i] = innerPos.x;
-      this._innerPositions[i+1] = innerPos.y;
-      this._innerPositions[i+2] = innerPos.z;
-
-      this._outerPositions[i] = outerPos.x;
-      this._outerPositions[i+1] = outerPos.y;
-      this._outerPositions[i+2] = outerPos.z;
+      outerPositions[i] = outerPos.x;
+      outerPositions[i+1] = outerPos.y;
+      outerPositions[i+2] = outerPos.z;
     }
 
-    this._vertexAttribute.needsUpdate = true;
-    this._innerAttribute.needsUpdate = true;
-    this._outerAttribute.needsUpdate = true;
+    innerAttr.needsUpdate = true;
+    outerAttr.needsUpdate = true;
+
   }
 
 

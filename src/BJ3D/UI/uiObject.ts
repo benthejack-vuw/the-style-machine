@@ -51,21 +51,29 @@ export class UIObject{
 
 
     for(let i = 0; i < keys.length; ++i){
+
       name = keys[i];
+
+      Object.defineProperty(this._parameters, this._title+name,
+      Object.getOwnPropertyDescriptor(this._parameters, name));
+      delete this._parameters[name];
+      
+      name = this._title+name;
+
       uiLayout = this._parameters[name];
 
       //create and link class variables to UI objects
-      if(this._parameters[keys[i]].variable){
-        let variable:string = this._parameters[keys[i]].variable;
-        this[variable] = this._parameters[keys[i]].attributes.value;
+      if(this._parameters[name].variable){
+        let variable:string = this._parameters[name].variable;
+        this[variable] = this._parameters[name].attributes.value;
         this["set_"+variable] = (value)=>{
           this[variable] = value;
           this._updateCallback();
         };
-        let listener = this._parameters[keys[i]].listener;
+        let listener = this._parameters[name].listener;
         let callbacks = {}
         callbacks[listener] = "set_"+variable;
-        this._parameters[keys[i]].callbacks = callbacks;
+        this._parameters[name].callbacks = callbacks;
       }
 
 

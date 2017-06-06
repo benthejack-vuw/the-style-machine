@@ -13,6 +13,7 @@ import {Stage3D} from "./BJ3D/scene/stage3D"
 import {buildGridObject} from "./BJ3D/geometry/gridBufferGeometry"
 import {DistortionAggregator} from "./BJ3D/geometry/distortionAggregator"
 import {Corrugator} from "./distortions/corrugator"
+import {Liquify} from "./distortions/liquify"
 import {LatheBuilder} from "./geometryBuilders/latheBuilder"
 
 
@@ -33,9 +34,12 @@ window.addEventListener('load', function(){
 	let corrugator = new Corrugator();
 	corrugator.displayUIOn(UI);
 	distorter.addDistortion(corrugator);
+	let liquifier = new Liquify();
+	liquifier.displayUIOn(UI);
+	distorter.addSurfaceDistortion(liquifier);
+
 
 	function updateMesh(buffer:BufferGeometry){
-
 			stage.removeFromScene(distorter.innerMesh);
 			stage.removeFromScene(distorter.bodyMesh);
 			stage.removeFromScene(distorter.outerMesh);
@@ -46,18 +50,20 @@ window.addEventListener('load', function(){
 			stage.addToScene(distorter.innerMesh);
 			stage.addToScene(distorter.bodyMesh);
 			stage.addToScene(distorter.outerMesh);
+	}
 
-			distorter.apply();
-
+	function updateAndApply(buffer:BufferGeometry){
+		updateMesh(buffer);
+		distorter.apply();
 	}
 
 	function updateLathe(){
 		updateMesh(latheBuilder.build());
-		distorter.shells = latheBuilder.build(2);
-		distorter.apply();
+		distorter.shells = latheBuilder.build(0.5);
 	}
 
-	latheBuilder.updateFunction(updateLathe);
-	geomSelector.updateFunction(updateMesh);
+	latheBuilder.updateFunctions(updateLathe, distorter.apply);
+	geomSelector.updateFunction(updateAndApply);
 
+	latheBuilder.runCallbacks();
 });

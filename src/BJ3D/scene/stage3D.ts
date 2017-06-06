@@ -7,6 +7,7 @@ import {Vector2,
 				Scene,
 				Camera,
 				PerspectiveCamera,
+				OrthographicCamera,
 			  Object3D,
 			  EventDispatcher,
 				BoxGeometry,
@@ -24,11 +25,14 @@ export class Stage3D{
 	private _canvas:HTMLCanvasElement;
 	private _renderer:Renderer;
 	private _scene:THREE.Scene;
-	private _camera:THREE.PerspectiveCamera;
+	private _perspCamera:THREE.PerspectiveCamera;
+	private _lockedCamera:THREE.PerspectiveCamera;
+	private _currentCamera:THREE.Camera;
 
 	private _trackball:THREE.TrackballControls;
 
 	private _resizing:boolean = false;
+	private _cameraToggle:HTMLInputElement;
 
 	constructor(parentID:string){
 		this._parent = document.getElementById(parentID);
@@ -39,10 +43,20 @@ export class Stage3D{
 
 		this._scene = new Scene();
 		this._scene.background = new Color(0x282c34);
-		this._camera = new PerspectiveCamera(75, this._size.x/this._size.y, 0.1, 1000);
-		this._camera.position.z = 4;
-		this._camera.position.y = 3;
+		this._perspCamera = new PerspectiveCamera(75, this._size.x/this._size.y, 0.1, 1000);
+		this._perspCamera.position.z = 3.5;
+		this._perspCamera.position.y = 3;
+
+		let proportion = this._size.x/this._size.y;
+		this._lockedCamera = new PerspectiveCamera(75, this._size.x/this._size.y, 0.1, 1000);
+		this._lockedCamera.position.z =3.5;
+		this._lockedCamera.position.y = 1.5;
+
+		this._currentCamera = this._perspCamera;
+
 		this._canvas = this._renderer.domElement;
+
+
 
 		var lights = [];
 		lights[ 0 ] = new PointLight( 0xffffff, 1, 0 );
@@ -57,11 +71,25 @@ export class Stage3D{
 		this._scene.add( lights[ 1 ] );
 		this._scene.add( lights[ 2 ] );
 
-		this._trackball = new TrackballControls(this._camera, this._parent);
+		this._trackball = new TrackballControls(this._perspCamera, this._parent);
 		this._parent.appendChild(this._canvas);
+
+		this._cameraToggle = document.createElement("input");
+		this._cameraToggle.setAttribute("id", "cameraToggle");
+		this._cameraToggle.setAttribute("type", "button");
+		this._cameraToggle.setAttribute("value", "view locked camera");
+		this._cameraToggle.setAttribute("style", "width:150px; position:fixed; right:20px; top:20px;");
+		this._cameraToggle.addEventListener("click", this.toggleCamera);
+		document.body.appendChild(this._cameraToggle);
 
 		window.addEventListener('resize', this.resize);
 		this.start();
+	}
+
+	public toggleCamera = ()=>{
+			this._currentCamera = this._currentCamera == this._lockedCamera ? this._perspCamera : this._lockedCamera;
+			this._cameraToggle.setAttribute("value", this._currentCamera == this._lockedCamera ? "unlock camera" : "view locked camera");
+			this._trackball.reset();
 	}
 
 	public start(){
@@ -100,7 +128,7 @@ export class Stage3D{
 
 	public render = ()=>{
 		this._trackball.update();
-		this._renderer.render(this._scene, this._camera);
+		this._renderer.render(this._scene, this._currentCamera);
 
 		if(this._loop)
 			window.requestAnimationFrame(this.render);
@@ -114,8 +142,6 @@ export class Stage3D{
 		if(!this._resizing){
 			this._resizing = true;
 			this._size = new Vector2(this._parent.clientWidth, this._parent.clientHeight);
-			this._camera.aspect = this._size.x/this._size.y;
-			this._camera.updateMatrix();
 			this._renderer.setSize(this._size.x, this._size.y);
 			this._trackball.handleResize();
 			window.requestAnimationFrame(this.throttle_resize);

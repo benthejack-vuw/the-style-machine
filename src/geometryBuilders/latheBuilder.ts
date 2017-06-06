@@ -9,6 +9,9 @@ import {Vector2,
 
 export class LatheBuilder extends GeometryBuilder{
 
+
+  private _releaseCallback;
+
   private _geometry:BufferGeometry;
   private _splineUI:Stage;
   private _spline:Spline;
@@ -52,18 +55,26 @@ export class LatheBuilder extends GeometryBuilder{
         p = new Point(newPts[i][0], newPts[i][1]);
         this._points.push(new DraggablePoint(p, 10));
         this._points[i].updateFunction = this._updateCallback;
+        this._points[i].releaseFunction = this._releaseCallback;
         this._splineUI.addChild(this._points[i]);
       }
     }
     this.rebuildSpline();
   }
 
-  public updateFunction(callback){
-    super.updateFunction(callback);
+  public updateFunctions(update, release){
+    super.updateFunction(update);
+    this._releaseCallback = release;
     for(let i = 0; i < this._points.length; ++i){
-      this._points[i].updateFunction = callback;
+      this._points[i].updateFunction = update;
+      this._points[i].releaseFunction = this._releaseCallback;
     }
     this._updateCallback();
+  }
+
+  public runCallbacks(){
+    this._updateCallback();
+    this._releaseCallback();
   }
 
   protected rebuildSpline(){
