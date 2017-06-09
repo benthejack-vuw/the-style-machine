@@ -42,7 +42,7 @@ export class Corrugator extends BufferDistortion{
     //
 
 
-    return direction.multiplyScalar((Math.sin(/*noise+*/i/(i2+1))*Math.cos(/*noise+*/j))*this["amplitude"]);
+    return direction.multiplyScalar((Math.sin(/*noise+*/i/(i2+1))*Math.cos(/*noise+*/j))*this["amplitude"] * (1+(((Math.sin(uv.x*TWO_PI*this["waveWaves"])+1.0)/2.0)*this["waveWaveAmplitude"])));
   }
 
 }
@@ -99,6 +99,7 @@ let UIDefinition:any = {
         "step":1
     }
   },
+
   "angle":{
     "variable":"angle",
     "label":"angle",
@@ -145,6 +146,30 @@ let UIDefinition:any = {
       "max":2,
       "value":1,
       "step":0.001
+    }
+  },
+  "wave-waves":{
+    "variable":"waveWaves",
+    "label":"wave waves",
+    "listener":"input",
+    "attributes":{
+      "type":"range",
+        "min":0,
+        "max":10,
+        "value":3,
+        "step":1
+    }
+  },
+  "wave-wave-amplitude":{
+    "variable":"waveWaveAmplitude",
+    "label":"wave wave amplitude",
+    "listener":"input",
+    "attributes":{
+      "type":"range",
+        "min":0,
+        "max":10,
+        "value":0,
+        "step":0.001
     }
   }
 }
