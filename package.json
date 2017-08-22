@@ -35,7 +35,7 @@
     "three": "^0.84.0",
     "three-obj-loader-es6": "0.0.1",
     "three-stlexporter": "^1.0.0",
-    "three-trackballcontrols-es6": "0.0.5",
+    "three-trackballcontrols-es6": "0.0.9",
     "threejs-export-stl-es6": "0.0.11"
   }
 }
