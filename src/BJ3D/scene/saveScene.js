@@ -9,8 +9,8 @@ import {
 } from "three"
 
 
-let vector = new Vector3();
-let normalMatrixWorld = new Matrix3();
+var vector = new Vector3();
+var normalMatrixWorld = new Matrix3();
 
 export function saveScene( scene )
 {
