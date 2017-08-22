@@ -1,5 +1,6 @@
 import {BufferGeometry,
 				LineSegments,
+				Uint16BufferAttribute,
 			  Float32BufferAttribute,
 			  LineBasicMaterial} from "three"
 
@@ -61,7 +62,7 @@ export class GridBufferGeometry extends BufferGeometry{
 			indices.push(i, i+1);
 		}
 
-		this.setIndex(indices);
+		this.setIndex(new Uint16BufferAttribute(indices, 1));
 		this.addAttribute('position', new Float32BufferAttribute(vertices, 3));
 		this.addAttribute('normal', new Float32BufferAttribute(normals, 3));
 		this.addAttribute('uv', new Float32BufferAttribute(uvs, 2));
