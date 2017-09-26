@@ -13,7 +13,7 @@ import {Stage3D} from "./BJ3D/scene/stage3D"
 import {buildGridObject} from "./BJ3D/geometry/gridBufferGeometry"
 import {DistortionAggregator} from "./BJ3D/geometry/distortionAggregator"
 import {Corrugator} from "./distortions/corrugator"
-import {Liquify} from "./distortions/liquify"
+import {PerspectiveWarp} from "./distortions/perspectiveWarp"
 import {LatheBuilder} from "./geometryBuilders/latheBuilder"
 
 
@@ -34,12 +34,18 @@ window.addEventListener('load', function(){
 	let corrugator = new Corrugator();
 	corrugator.displayUIOn(UI);
 	distorter.addDistortion(corrugator);
-	let liquifier = new Liquify();
-	liquifier.displayUIOn(UI);
-	distorter.addSurfaceDistortion(liquifier);
+	let warp = new PerspectiveWarp();
+	geom.computeBoundingBox();
+	warp.boundingBox = geom.boundingBox;
+	warp.displayUIOn(UI);
+	distorter.addDistortion(warp);
+	distorter.addSurfaceDistortion(warp);
 
 
 	function updateMesh(buffer:BufferGeometry){
+			buffer.computeBoundingBox();
+			warp.boundingBox = buffer.boundingBox;
+
 			stage.removeFromScene(distorter.innerMesh);
 			stage.removeFromScene(distorter.bodyMesh);
 			stage.removeFromScene(distorter.outerMesh);
@@ -50,6 +56,8 @@ window.addEventListener('load', function(){
 			stage.addToScene(distorter.innerMesh);
 			stage.addToScene(distorter.bodyMesh);
 			stage.addToScene(distorter.outerMesh);
+
+
 	}
 
 	function updateAndApply(buffer:BufferGeometry){

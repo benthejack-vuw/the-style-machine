@@ -24,9 +24,9 @@ export class Liquify extends BufferDistortion{
     let ny=Math.cos(uv.y*2*pi)*this["liquifyFrequency"]
     let nz=Math.sin(uv.x*2*pi)*this["liquifyFrequency"]
     let nw=Math.sin(uv.y*2*pi)*this["liquifyFrequency"]
-    let noise = this.noise.noise4D(nx,ny,nz,nw)*this["liquifyMultiplier"];
+    let distorted = this.noise.noise4D(nx,ny,nz,nw)*this["liquifyMultiplier"];
 
-    return normal.multiplyScalar((Math.sin(noise + uv.x*30*6.28318)*Math.cos(noise + uv.y*10*6.28318))*this["amplitude"]);
+    return normal.multiplyScalar((Math.sin(distorted + uv.x*30*6.28318)*Math.cos(distorted + uv.y*10*6.28318))*this["amplitude"]);
   }
 }
 
