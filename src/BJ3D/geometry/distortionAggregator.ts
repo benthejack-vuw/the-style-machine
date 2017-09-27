@@ -267,7 +267,7 @@ export class DistortionAggregator extends UIObject{
     this.apply_distortions(this._outerShell, temp_start, this._surfaceDistortions, true);
 
     let innerAttr = (<THREE.BufferAttribute>this._innerShell.getAttribute('position'));
-    temp_start = (<any[]>innerAttr.array).slice();
+    let temp_start = (<any[]>innerAttr.array).slice();
     this.apply_distortions(this._innerShell, temp_start, this._surfaceDistortions, true);
 
   }
