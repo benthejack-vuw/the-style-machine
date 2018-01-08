@@ -167,14 +167,12 @@ export class DistortionAggregator extends UIObject{
   }
 
   public set geometry(geometry:BufferGeometry){
-    this._geometry = geometry;
-    this._innerShell = this._geometry.clone();
-    this._outerShell = this._geometry.clone();
+    this._geometry = geometry.clone();
 
-    let vert_attr = <THREE.BufferAttribute>geometry.getAttribute('position')
+    let vert_attr = <THREE.BufferAttribute>this._geometry.getAttribute('position')
     this._startPositions = (<any[]>vert_attr.array).slice();
 
-    this.shells = geometry;
+    this.shells = this._geometry;
     this._bodyMesh.geometry = this._geometry;
   }
 
@@ -195,7 +193,7 @@ export class DistortionAggregator extends UIObject{
   }
 
   public set shells(buffer:BufferGeometry){
-    this._innerShell = buffer;
+    this._innerShell = buffer.clone();;
     this._outerShell = buffer.clone();
     this._innerMesh.geometry = this._innerShell;
     this._outerMesh.geometry = this._outerShell;

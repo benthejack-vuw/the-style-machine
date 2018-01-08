@@ -34,17 +34,10 @@ window.addEventListener('load', function(){
 	let corrugator = new Corrugator();
 	corrugator.displayUIOn(UI);
 	distorter.addDistortion(corrugator);
-	let warp = new PerspectiveWarp();
-	geom.computeBoundingBox();
-	warp.boundingBox = geom.boundingBox;
-	warp.displayUIOn(UI);
-	distorter.addDistortion(warp);
-	distorter.addSurfaceDistortion(warp);
 
 
 	function updateMesh(buffer:BufferGeometry){
 			buffer.computeBoundingBox();
-			warp.boundingBox = buffer.boundingBox;
 
 			stage.removeFromScene(distorter.innerMesh);
 			stage.removeFromScene(distorter.bodyMesh);
@@ -68,6 +61,7 @@ window.addEventListener('load', function(){
 	function updateLathe(){
 		updateMesh(latheBuilder.build());
 		distorter.shells = latheBuilder.build(0.5);
+		distorter.apply();
 	}
 
 	latheBuilder.updateFunctions(updateLathe, distorter.apply);
