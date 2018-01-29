@@ -19,7 +19,6 @@ import {saveScene} from "../scene/saveScene"
 
 
 let distortionParams = {
-
  "save":{
     "attributes":{
       "type":"button",
@@ -39,7 +38,6 @@ let distortionParams = {
       "click":"toggleOuterShell"
     }
   },
-
   "innerShell":{
     "attributes":{
       "type":"button",
@@ -59,7 +57,6 @@ let distortionParams = {
       "click":"toggleSkinShell"
     }
   },
-
   "shell material":{
      "attributes":{
        "type":"button",
@@ -70,8 +67,6 @@ let distortionParams = {
        "click":"swapMaterials"
      }
    },
-
-
   "outer-expand":{
     "variable":"expandOuter",
     "label":"expand outer shell",
@@ -96,7 +91,6 @@ let distortionParams = {
         "step":0.001
     }
   },
-
   "skin-expand":{
     "variable":"expandSkin",
     "label":"expand skin shell",
@@ -109,7 +103,6 @@ let distortionParams = {
         "step":0.001
     }
   },
-
   "top-convergence":{
     "variable":"topConvergence",
     "label":"pinch shells top",
@@ -125,6 +118,246 @@ let distortionParams = {
   "bottom-convergence":{
     "variable":"bottomConvergence",
     "label":"pinch shells bottom",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch0":{
+    "variable":"pinch0",
+    "label":"pinch shells point 1",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch1":{
+    "variable":"pinch1",
+    "label":"pinch shells point 2",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch2":{
+    "variable":"pinch2",
+    "label":"pinch shells point 3",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch3":{
+    "variable":"pinch3",
+    "label":"pinch shells point 4",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch4":{
+    "variable":"pinch4",
+    "label":"pinch shells point 5",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch5":{
+    "variable":"pinch5",
+    "label":"pinch shells point 6",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch6":{
+    "variable":"pinch6",
+    "label":"pinch shells point 7",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch7":{
+    "variable":"pinch7",
+    "label":"pinch shells point 8",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch8":{
+    "variable":"pinch8",
+    "label":"pinch shells point 9",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch9":{
+    "variable":"pinch9",
+    "label":"pinch shells point 10",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch10":{
+    "variable":"pinch10",
+    "label":"pinch shells point 11",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch11":{
+    "variable":"pinch11",
+    "label":"pinch shells point 12",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch12":{
+    "variable":"pinch12",
+    "label":"pinch shells point 13",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch13":{
+    "variable":"pinch13",
+    "label":"pinch shells point 14",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch14":{
+    "variable":"pinch14",
+    "label":"pinch shells point 15",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch15":{
+    "variable":"pinch15",
+    "label":"pinch shells point 16",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch16":{
+    "variable":"pinch16",
+    "label":"pinch shells point 17",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch17":{
+    "variable":"pinch17",
+    "label":"pinch shells point 18",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch18":{
+    "variable":"pinch18",
+    "label":"pinch shells point 19",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
+  "pinch19":{
+    "variable":"pinch19",
+    "label":"pinch shells point 20",
     "listener":"input",
     "attributes":{
         "type":"range",
@@ -159,8 +392,10 @@ export class DistortionAggregator extends UIObject{
 
   private _minOffset:number;
   private _maxOffset:number;
+  private _pointCount:number;
 
   private _displaySolidShells:boolean;
+
 
   constructor(geometry:BufferGeometry){
     super("distortions");
@@ -286,6 +521,30 @@ export class DistortionAggregator extends UIObject{
     return this._outerShell;
   }
 
+  public smoothPointCount(pts){
+
+    this._pointCount = pts;
+
+    function findLableFor(el) {
+       var idVal = el.id;
+       var labels = document.getElementsByTagName('label');
+       for( var i = 0; i < labels.length; i++ ) {
+          if (labels[i].htmlFor == el)
+               return labels[i];
+       }
+    }
+
+    for(var i = 0; i < 20; ++i){
+      var elem = document.getElementById("distortionspinch"+i).style.display = 'none';
+      findLableFor("distortionspinch"+i).style.display = 'none';
+    }
+
+    for(var i = 0; i < pts; ++i){
+      var elem = document.getElementById("distortionspinch"+i).style.display = 'block';
+      findLableFor("distortionspinch"+i).style.display = 'block';
+    }
+  }
+
   public addDistortion(distortion:BufferDistortion){
     this._distortions.push(distortion);
     distortion.updateFunction(this.apply)
@@ -336,6 +595,7 @@ export class DistortionAggregator extends UIObject{
     let accumulator;
     let pinch:number;
     let distortion;
+    let point_space = 1.0/(this._pointCount-1);
 
     for(let i = 0; i < positions.length; i+=3){
       index = i/3;
@@ -348,6 +608,10 @@ export class DistortionAggregator extends UIObject{
       accumulator = 0;
 
       pinch = (this["topConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 :BJMath.smoothStep(0, this["bottomConvergence"],  uv.y));
+      for(let p = 0; p < this._pointCount; ++p){
+        let d = this["pinch"+p]/this._pointCount;
+        pinch *= (this["pinch"+p] == 0 ? 1 : BJMath.smoothStep(0, d,  Math.abs((p)*point_space-uv.y)));
+      }
 
       for(var j = 0; j < distortions.length; ++j){
         distortion = distortions[j].vertexDistortionFunction(position, normal, uv, index).multiplyScalar(distortions[j].multiplier);
@@ -393,6 +657,7 @@ export class DistortionAggregator extends UIObject{
       uv = new Vector2(shellUVs[index*2], shellUVs[index*2+1]);
       normal = new Vector3(shellNormals[i], shellNormals[i+1], shellNormals[i+2]);
       pinch = (this["topConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["topConvergence"],  1-uv.y)) * (this["bottomConvergence"] == 0 ? 1 : BJMath.smoothStep(0, this["bottomConvergence"],  uv.y));
+
       let n = normal.clone();
       n.normalize();
       let innerPos = position.clone();

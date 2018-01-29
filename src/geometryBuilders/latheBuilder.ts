@@ -62,6 +62,10 @@ export class LatheBuilder extends GeometryBuilder{
     this.rebuildSpline();
   }
 
+  public get numPoints(){
+    return this._points.length;
+  }
+
   public updateFunctions(update, release){
     super.updateFunction(update);
     this._releaseCallback = release;

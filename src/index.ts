@@ -64,6 +64,7 @@ window.addEventListener('load', function(){
 		updateMesh(latheBuilder.build());
 		distorter.shells = latheBuilder.build(0.5);
 		distorter.apply();
+		distorter.smoothPointCount(latheBuilder.numPoints);
 	}
 
 	latheBuilder.updateFunctions(updateLathe, distorter.apply);
