@@ -103,6 +103,18 @@ let distortionParams = {
         "step":0.001
     }
   },
+  "pinch Skin":{
+    "variable":"pinchSkin",
+    "label":"pinch skin shell",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":0,
+        "max":1,
+        "value":0,
+        "step":0.001
+    }
+  },
   "top-convergence":{
     "variable":"topConvergence",
     "label":"pinch shells top",
@@ -689,6 +701,7 @@ export class DistortionAggregator extends UIObject{
     skinAttr.dynamic = true;
     let skinPositions = <any[]>skinAttr.array;
     let skinNormals = <any[]>(this._skinMesh.geometry as BufferGeometry).getAttribute('normal').array;
+    let skinUVs = <any[]>(this._skinMesh.geometry as BufferGeometry).getAttribute('uv').array;
 
     for(let i = 0; i < skinPositions.length; i+=3){
       index = i/3;
@@ -698,7 +711,14 @@ export class DistortionAggregator extends UIObject{
       n.normalize();
       let skinPos = position.clone();
       let n_s = n.clone();
-      n_s.multiplyScalar(this["expandSkin"]);
+
+      uv = new Vector2(skinUVs[index*2], skinUVs[index*2+1]);
+      pinch = this["pinchSkin"] == 0 ? 1 : BJMath.smoothStep(0, this["pinchSkin"],  uv.y)*BJMath.smoothStep(0, this["pinchSkin"],  1.0-uv.y);
+
+      if(i == 0)
+        console.log(pinch + "  :  "+ this["pinchSkin"]);
+
+      n_s.multiplyScalar(this["expandSkin"]*pinch);
       skinPos.add(n_s);
 
       skinPositions[i] = skinPos.x;
