@@ -105,7 +105,7 @@ let distortionParams = {
         "type":"range",
         "min":-0.2,
         "max":0.2,
-        "value":0,
+        "value":0.05,
         "step":0.001
     }
   },
@@ -233,6 +233,9 @@ export class DistortionAggregator extends UIObject{
 
     let shellAttr = (<THREE.BufferAttribute>this._innerShell.getAttribute('position'));
     this._shellPositions = (<any[]>shellAttr.array).slice();
+
+    this.toggleOuterShell();
+    this.toggleInnerShell();
 
   }
 
