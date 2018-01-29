@@ -49,6 +49,17 @@ let distortionParams = {
       "click":"toggleInnerShell"
     }
   },
+  "skinShell":{
+    "attributes":{
+      "type":"button",
+      "value":"toggle skin shell",
+      "style":"width:100%;"
+    },
+    "callbacks":{
+      "click":"toggleSkinShell"
+    }
+  },
+
   "shell material":{
      "attributes":{
        "type":"button",
@@ -85,6 +96,20 @@ let distortionParams = {
         "step":0.001
     }
   },
+
+  "skin-expand":{
+    "variable":"expandSkin",
+    "label":"expand skin shell",
+    "listener":"input",
+    "attributes":{
+        "type":"range",
+        "min":-0.2,
+        "max":0.2,
+        "value":0,
+        "step":0.001
+    }
+  },
+
   "top-convergence":{
     "variable":"topConvergence",
     "label":"pinch shells top",
@@ -128,6 +153,7 @@ export class DistortionAggregator extends UIObject{
   private _bodyMesh:Mesh;
   private _innerMesh:Mesh;
   private _outerMesh:Mesh;
+  private _skinMesh:Mesh;
   private _bodyMaterial:MeshPhongMaterial;
   private _shellMaterial:MeshBasicMaterial;
 
@@ -158,6 +184,7 @@ export class DistortionAggregator extends UIObject{
 
     this._displaySolidShells = false;
     this._bodyMesh = new Mesh(this._geometry, this._bodyMaterial);
+    this._skinMesh = new Mesh(this._geometry, this._bodyMaterial);
     this._innerMesh = new Mesh(this._innerShell, this._shellMaterial);
     this._outerMesh = new Mesh(this._outerShell, this._shellMaterial);
 
@@ -174,6 +201,8 @@ export class DistortionAggregator extends UIObject{
 
     this.shells = this._geometry;
     this._bodyMesh.geometry = this._geometry;
+    this._skinMesh.geometry = this._geometry.clone();
+
   }
 
   public set scene(scene:Scene){
@@ -186,6 +215,10 @@ export class DistortionAggregator extends UIObject{
 
   public get bodyMesh():Mesh{
     return this._bodyMesh;
+  }
+
+  public get skinMesh():Mesh{
+    return this._skinMesh;
   }
 
   public get outerMesh():Mesh{
@@ -234,6 +267,10 @@ export class DistortionAggregator extends UIObject{
     this._outerMesh.visible = !this._outerMesh.visible;
   }
 
+  public toggleSkinShell = ()=>{
+    this._skinMesh.visible = !this._skinMesh.visible;
+  }
+
   public toggleInnerShell = ()=>{
     this._innerMesh.visible = !this._innerMesh.visible;
   }
@@ -258,6 +295,7 @@ export class DistortionAggregator extends UIObject{
 
   public apply = () => {
     this.apply_distortions(this._geometry, this._startPositions, this._distortions, true);
+    this._skinMesh.geometry = this._geometry.clone();
     this.expand_shells();
 
     let outerAttr = (<THREE.BufferAttribute>this._outerShell.getAttribute('position'));
@@ -267,6 +305,10 @@ export class DistortionAggregator extends UIObject{
     let innerAttr = (<THREE.BufferAttribute>this._innerShell.getAttribute('position'));
     temp_start = (<any[]>innerAttr.array).slice();
     this.apply_distortions(this._innerShell, temp_start, this._surfaceDistortions, true);
+
+
+
+  //  this.apply_distortions(this._geometry, positions, [this._expand], false);
 
   }
 
@@ -332,6 +374,7 @@ export class DistortionAggregator extends UIObject{
     let outerAttr = (<THREE.BufferAttribute>this._outerShell.getAttribute('position'));
     outerAttr.dynamic = true;
 
+
     let shellUVs = <any[]>this._innerShell.getAttribute('uv').array;
     let innerPositions = <any[]>innerAttr.array;
     let outerPositions = <any[]>outerAttr.array;
@@ -374,8 +417,30 @@ export class DistortionAggregator extends UIObject{
       outerPositions[i+2] = outerPos.z;
     }
 
+    let skinAttr = <THREE.BufferAttribute>(this._skinMesh.geometry as BufferGeometry).getAttribute('position')
+    skinAttr.dynamic = true;
+    let skinPositions = <any[]>skinAttr.array;
+    let skinNormals = <any[]>(this._skinMesh.geometry as BufferGeometry).getAttribute('normal').array;
+
+    for(let i = 0; i < skinPositions.length; i+=3){
+      index = i/3;
+      position = new Vector3(skinPositions[i], skinPositions[i+1], skinPositions[i+2]);
+      normal = new Vector3(skinNormals[i], skinNormals[i+1], skinNormals[i+2]);
+      let n = normal.clone();
+      n.normalize();
+      let skinPos = position.clone();
+      let n_s = n.clone();
+      n_s.multiplyScalar(this["expandSkin"]);
+      skinPos.add(n_s);
+
+      skinPositions[i] = skinPos.x;
+      skinPositions[i+1] = skinPos.y;
+      skinPositions[i+2] = skinPos.z;
+    }
+
     innerAttr.needsUpdate = true;
     outerAttr.needsUpdate = true;
+    skinAttr.needsUpdate = true;
 
   }
 

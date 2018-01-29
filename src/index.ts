@@ -42,6 +42,7 @@ window.addEventListener('load', function(){
 			stage.removeFromScene(distorter.innerMesh);
 			stage.removeFromScene(distorter.bodyMesh);
 			stage.removeFromScene(distorter.outerMesh);
+			stage.removeFromScene(distorter.skinMesh);
 
 			buffer.type = 'BufferGeometry';
 			distorter.geometry = buffer;
@@ -49,6 +50,7 @@ window.addEventListener('load', function(){
 			stage.addToScene(distorter.innerMesh);
 			stage.addToScene(distorter.bodyMesh);
 			stage.addToScene(distorter.outerMesh);
+			stage.addToScene(distorter.skinMesh);
 
 
 	}
