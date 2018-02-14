@@ -32,16 +32,6 @@ export class Corrugator extends BufferDistortion{
     out.normalize();
     let direction = normal.lerp(out, this["angle"]);
 
-
-    // let pi = 3.14159;
-    // let nx=Math.cos(uv.x*2*pi)*this["liquifyFrequency"]
-    // let ny=Math.cos(uv.y*2*pi)*this["liquifyFrequency"]
-    // let nz=Math.sin(uv.x*2*pi)*this["liquifyFrequency"]
-    // let nw=Math.sin(uv.y*2*pi)*this["liquifyFrequency"]
-    // let noise = this.noise.noise4D(nx,ny,nz,nw)*this["liquifyMultiplier"];
-    //
-
-
     return direction.multiplyScalar((Math.sin(/*noise+*/i/(i2+1))*Math.cos(/*noise+*/j))*this["amplitude"] * (1+(((Math.sin(uv.x*TWO_PI*this["waveWaves"])+1.0)/2.0)*this["waveWaveAmplitude"])));
   }
 
@@ -49,31 +39,6 @@ export class Corrugator extends BufferDistortion{
 
 
 let UIDefinition:any = {
-  // "liquifyFreq":{
-  //   "variable":"liquifyFrequency",
-  //   "label":"Ben says: liquify frequency",
-  //   "listener":"input",
-  //   "attributes":{
-  //       "type":"range",
-  //       "min":0.01,
-  //       "max":0.75,
-  //       "value":0.375,
-  //       "step":0.001
-  //   }
-  // },
-  //
-  // "liquifyMult":{
-  //   "variable":"liquifyMultiplier",
-  //   "label":"liquify strength",
-  //   "listener":"input",
-  //   "attributes":{
-  //       "type":"range",
-  //       "min":0,
-  //       "max":10,
-  //       "value":1.0,
-  //       "step":0.001
-  //   }
-  // },
 
   "x-waves":{
     "variable":"xWaves",

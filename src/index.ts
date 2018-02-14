@@ -13,6 +13,7 @@ import {Stage3D} from "./BJ3D/scene/stage3D"
 import {buildGridObject} from "./BJ3D/geometry/gridBufferGeometry"
 import {DistortionAggregator} from "./BJ3D/geometry/distortionAggregator"
 import {Corrugator} from "./distortions/corrugator"
+import {Twist} from "./distortions/twist"
 import {PerspectiveWarp} from "./distortions/perspectiveWarp"
 import {LatheBuilder} from "./geometryBuilders/latheBuilder"
 
@@ -35,6 +36,9 @@ window.addEventListener('load', function(){
 	corrugator.displayUIOn(UI);
 	distorter.addDistortion(corrugator);
 
+	let twist = new Twist();
+	twist.displayUIOn(UI);
+	distorter.addDistortion(twist);
 
 	function updateMesh(buffer:BufferGeometry){
 			buffer.computeBoundingBox();
