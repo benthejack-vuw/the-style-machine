@@ -684,7 +684,6 @@ export class DistortionAggregator extends UIObject{
     }
 
     vert_attr.needsUpdate = true;
-    geometry.computeFaceNormals();
   }
 
   public expand_shells = () => {
