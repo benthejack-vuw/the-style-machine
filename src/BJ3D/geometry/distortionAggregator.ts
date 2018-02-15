@@ -574,12 +574,11 @@ export class DistortionAggregator extends UIObject{
 
   public apply = () => {
     this.apply_distortions(this._geometry, this._startPositions, this._distortions, true);
-    this._skinMesh.geometry = this._geometry.clone();
-    this.expand_shells();
-
     if(this._absoluteDistortions && this._absoluteDistortions.length > 0)
       this.apply_absolute_distortions(this._geometry, this._startPositions, this._absoluteDistortions);
 
+    this._skinMesh.geometry = this._geometry.clone();
+    this.expand_shells();
 
     let outerAttr = (<THREE.BufferAttribute>this._outerShell.getAttribute('position'));
     let temp_start = (<any[]>outerAttr.array).slice();
@@ -685,6 +684,7 @@ export class DistortionAggregator extends UIObject{
     }
 
     vert_attr.needsUpdate = true;
+    geometry.computeFaceNormals();
   }
 
   public expand_shells = () => {
