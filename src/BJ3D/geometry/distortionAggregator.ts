@@ -390,6 +390,7 @@ export class DistortionAggregator extends UIObject{
 
   protected _distortions:BufferDistortion[];
   protected _surfaceDistortions:BufferDistortion[];
+  protected _absoluteDistortions:BufferDistortion[];
 
   private _startPositions:any[];
   private _shellPositions:any[];
@@ -415,6 +416,7 @@ export class DistortionAggregator extends UIObject{
 
     this._distortions = [];
     this._surfaceDistortions = [];
+    this._absoluteDistortions = [];
 
     this._bodyMaterial = new MeshPhongMaterial( {
             color: 0x156289,
@@ -561,7 +563,10 @@ export class DistortionAggregator extends UIObject{
     this._distortions.push(distortion);
     distortion.updateFunction(this.apply)
   }
-
+  public addAbsoluteDistortion(distortion:BufferDistortion){
+    this._absoluteDistortions.push(distortion);
+    distortion.updateFunction(this.apply)
+  }
   public addSurfaceDistortion(distortion:BufferDistortion){
     this._surfaceDistortions.push(distortion);
     distortion.updateFunction(this.apply)
@@ -571,6 +576,10 @@ export class DistortionAggregator extends UIObject{
     this.apply_distortions(this._geometry, this._startPositions, this._distortions, true);
     this._skinMesh.geometry = this._geometry.clone();
     this.expand_shells();
+
+    if(this._absoluteDistortions && this._absoluteDistortions.length > 0)
+      this.apply_absolute_distortions(this._geometry, this._startPositions, this._absoluteDistortions);
+
 
     let outerAttr = (<THREE.BufferAttribute>this._outerShell.getAttribute('position'));
     let temp_start = (<any[]>outerAttr.array).slice();
@@ -585,6 +594,38 @@ export class DistortionAggregator extends UIObject{
   //  this.apply_distortions(this._geometry, positions, [this._expand], false);
 
   }
+
+  public apply_absolute_distortions = (geometry:BufferGeometry, startPositions:any[], distortions:any[]) => {
+    let vert_attr = (<THREE.BufferAttribute>geometry.getAttribute('position'));
+    vert_attr.dynamic = true;
+
+    let positions = <any[]>vert_attr.array;
+    let normals = <any[]>geometry.getAttribute('normal').array;
+    let uvs = <any[]>geometry.getAttribute('uv').array;
+
+    let index:number;
+    let position:Vector3, normal:Vector3, uv:Vector2;
+    let newPosition:Vector3, multipliedPosition:Vector3;
+
+    for(var j = 0; j < distortions.length; ++j){
+      for(let i = 0; i < positions.length; i+=3){
+        index = i/3;
+        position = new Vector3(positions[i], positions[i+1], positions[i+2]);
+        normal = new Vector3(normals[i], normals[i+1], normals[i+2]);
+        uv = new Vector2(uvs[index*2], uvs[index*2+1]);
+
+        newPosition = distortions[j].vertexDistortionFunction(position, normal, uv, index).multiplyScalar(distortions[j].multiplier);
+
+        positions[i] = newPosition.x;
+        positions[i+1] = newPosition.y;
+        positions[i+2] = newPosition.z;
+      }
+    }
+
+    vert_attr.needsUpdate = true;
+  }
+
+
 
   public apply_distortions = (geometry:BufferGeometry, startPositions:any[], distortions:any[], doOffset:boolean = false) => {
     let vert_attr = (<THREE.BufferAttribute>geometry.getAttribute('position'));

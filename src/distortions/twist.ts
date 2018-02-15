@@ -14,11 +14,12 @@ export class Twist extends BufferDistortion{
 
   public vertexDistortionFunction(position:Vector3, normal:Vector3, uv:Vector2, index:number):Vector3{
 
-    let d = position.distanceTo(new Vector3(0, position.y, 0));
-    let twist = this["twist"] * d *  position.y;//Math.pow(d, this["pow"]);
+    let d = new Vector3(position.x, 0, position.z).length();
+
+    let twist = this["twist"] * d;//Math.pow(d, this["pow"]);
     let theta = Math.atan2(position.z, position.x) + twist;
 
-    return new Vector3(Math.cos(theta)*d, position.y, Math.sin(theta)*d).sub(position);
+    return new Vector3(Math.cos(theta)*d, position.y, Math.sin(theta)*d);
   }
 }
 

@@ -38,7 +38,7 @@ window.addEventListener('load', function(){
 
 	let twist = new Twist();
 	twist.displayUIOn(UI);
-	distorter.addDistortion(twist);
+	distorter.addAbsoluteDistortion(twist);
 
 	function updateMesh(buffer:BufferGeometry){
 			buffer.computeBoundingBox();
