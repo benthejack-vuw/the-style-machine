@@ -16,7 +16,7 @@ export class Twist extends BufferDistortion{
 
     let d = new Vector3(position.x, 0, position.z).length();
 
-    let twist = this["twist"] * d;//Math.pow(d, this["pow"]);
+    let twist = this["twist"] * Math.pow(d, this["curve"]);//Math.pow(d, this["pow"]);
     let theta = Math.atan2(position.z, position.x) + twist;
 
     return new Vector3(Math.cos(theta)*d, position.y, Math.sin(theta)*d);
@@ -33,6 +33,18 @@ let UIDefinition:any = {
         "min":0,
         "max":1.0,
         "value":0,
+        "step":0.001
+    }
+  },
+  "curvyness":{
+    "variable":"curve",
+    "label":"curvyness",
+    "listener":"input",
+    "attributes":{
+      "type":"range",
+        "min":0.01,
+        "max":3.0,
+        "value":1,
         "step":0.001
     }
   }
