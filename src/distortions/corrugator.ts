@@ -4,35 +4,37 @@ import{BufferGeometry,
        Vector3,
        Vector2} from 'three'
 
-import SimplexNoise from "simplex-noise";
-
 const UP = new Vector3(0,1,0);
 
 export class Corrugator extends BufferDistortion{
 
-  //private noise:SimplexNoise;
-
   constructor(){
     super("Corrugation", UIDefinition);
-  //  this.noise = new SimplexNoise();
   }
 
-  public vertexDistortionFunction(position:Vector3, normal:Vector3, uv:Vector2, index:number):Vector3{
-    let TWO_PI = 6.2831852;
 
-		let i = uv.y;
-		let j = uv.x;
-		let i2 = ((i*(i/this["stretchAmount"]))*this["stretchStrength"]) + 1.0;
-		let j2 = 1.0;
-		i*=TWO_PI*this["yWaves"];
-		j*=TWO_PI*this["xWaves"];
+   public vertexDistortionFunction = (position:Vector3, normal:Vector3, uv:Vector2, index:number):Vector3 => {
+      let TWO_PI = 6.2831852;
+
+  		let i = uv.y;
+  		let j = uv.x;
+  		let i2 = ((i*(i/this["stretchAmount"]))*this["stretchStrength"]) + 1.0;
+  		let j2 = 1.0;
+  		i*=TWO_PI*this["yWaves"];
+  		j*=TWO_PI*this["xWaves"];
 
 
-    let out = new Vector3(position.x, 0, position.z);
-    out.normalize();
-    let direction = normal.lerp(out, this["angle"]);
+      let out = new Vector3(position.x, 0, position.z);
+      out.normalize();
+      let direction = normal.lerp(out, this["angle"]);
 
-    return direction.multiplyScalar((Math.sin(/*noise+*/i/(i2+1))*Math.cos(/*noise+*/j))*this["amplitude"] * (1+(((Math.sin(uv.x*TWO_PI*this["waveWaves"])+1.0)/2.0)*this["waveWaveAmplitude"])));
+
+      let pinch_value = 1;
+
+      if(this._pinch)
+        pinch_value = this._pinch.value(uv)*this._pinch.pinch_points_value(uv);
+
+      return direction.multiplyScalar((Math.sin(i/(i2+1))*Math.cos(j))*this["amplitude"] * (1+(((Math.sin(uv.x*TWO_PI*this["waveWaves"])+1.0)/2.0)*this["waveWaveAmplitude"]))).multiplyScalar(pinch_value);
   }
 
 }

@@ -4,8 +4,12 @@ import {Stage} from "quick-canvas/lib/canvas/stage"
 import {DraggablePoint} from "quick-canvas"
 import {GeometryBuilder} from "../BJ3D/geometry/geometryBuilder"
 import {Vector2,
-        BufferGeometry,
-        LatheBufferGeometry} from "three"
+        BufferGeometry} from "three"
+
+import {BJMath} from "bj-utils"
+
+
+import {SewnLatheBufferGeometry} from "./sewnLatheBufferGeometry"
 
 export class LatheBuilder extends GeometryBuilder{
 
@@ -103,7 +107,7 @@ export class LatheBuilder extends GeometryBuilder{
         lathePoints[i].y = maxY-lathePoints[i].y;
     }
 
-    this._geometry = new LatheBufferGeometry(lathePoints , this["verticalSlices"]/divide );
+    this._geometry = new SewnLatheBufferGeometry(lathePoints , this["verticalSlices"]/divide, 0, BJMath.TWO_PI );
     return <BufferGeometry> this._geometry;
   }
 

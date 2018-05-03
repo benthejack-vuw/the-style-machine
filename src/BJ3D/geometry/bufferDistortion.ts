@@ -3,10 +3,12 @@ import{Vector2,
        BufferGeometry} from "three"
 
 import {UIObject} from "../UI/uiObject"
+import {Pinch} from "../../distortions/pinch"
 
 export class BufferDistortion extends UIObject{
 
   public multiplier;
+  protected _pinch:Pinch;
 
   constructor(title:string, uiParameters:any){
     super(title);
@@ -14,7 +16,12 @@ export class BufferDistortion extends UIObject{
     super.buildUI(uiParameters);
   }
 
-  public vertexDistortionFunction(position:Vector3, normal:Vector3, uv:Vector2, index:number):Vector3{
+  public set pinch(pinch:Pinch){
+    this._pinch = pinch;
+    console.log("pinch added?");
+  }
+
+  public vertexDistortionFunction = (position:Vector3, normal:Vector3, uv:Vector2, index:number):Vector3 => {
     return position;
   }
 

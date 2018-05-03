@@ -3,7 +3,7 @@ import {LineSegments,
 				Mesh,
 				MeshBasicMaterial,
 				MeshPhongMaterial,
-			  	BufferGeometry,
+			  BufferGeometry,
 				DoubleSide,
 				FlatShading} from 'three'
 
@@ -14,7 +14,6 @@ import {buildGridObject} from "./BJ3D/geometry/gridBufferGeometry"
 import {DistortionAggregator} from "./BJ3D/geometry/distortionAggregator"
 import {Corrugator} from "./distortions/corrugator"
 import {Twist} from "./distortions/twist"
-import {PerspectiveWarp} from "./distortions/perspectiveWarp"
 import {LatheBuilder} from "./geometryBuilders/latheBuilder"
 
 
@@ -32,6 +31,7 @@ window.addEventListener('load', function(){
 	let distorter = new DistortionAggregator(geom);
 	distorter.scene = stage.scene;
 	distorter.displayUIOn(UI);
+
 	let corrugator = new Corrugator();
 	corrugator.displayUIOn(UI);
 	distorter.addDistortion(corrugator);
@@ -66,7 +66,7 @@ window.addEventListener('load', function(){
 
 	function updateLathe(){
 		updateMesh(latheBuilder.build());
-		distorter.shells = latheBuilder.build(0.5);
+
 		distorter.apply();
 		distorter.smoothPointCount(latheBuilder.numPoints);
 	}

@@ -12,7 +12,7 @@ export class Twist extends BufferDistortion{
     super("Twist", UIDefinition);
   }
 
-  public vertexDistortionFunction(position:Vector3, normal:Vector3, uv:Vector2, index:number):Vector3{
+  public vertexDistortionFunction = (position:Vector3, normal:Vector3, uv:Vector2, index:number):Vector3 => {
 
     let d = new Vector3(position.x, 0, position.z).length();
 
