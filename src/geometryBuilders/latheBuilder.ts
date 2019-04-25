@@ -1,15 +1,9 @@
-import {Point} from "bj-utils/lib/geometry/point"
-import {Spline} from "quick-canvas/lib/geometry/spline"
-import {Stage} from "quick-canvas/lib/canvas/stage"
-import {DraggablePoint} from "quick-canvas"
 import {GeometryBuilder} from "../BJ3D/geometry/geometryBuilder"
-import {Vector2,
-        BufferGeometry} from "three"
-
+import {BufferGeometry} from "three"
 import {BJMath} from "bj-utils"
-
-
+import {SplineUI} from "./splineUI"
 import {SewnLatheBufferGeometry} from "./sewnLatheBufferGeometry"
+
 
 export class LatheBuilder extends GeometryBuilder{
 
@@ -17,66 +11,35 @@ export class LatheBuilder extends GeometryBuilder{
   private _releaseCallback;
 
   private _geometry:BufferGeometry;
-  private _splineUI:Stage;
-  private _spline:Spline;
-  private _points:DraggablePoint[];
-
+  private _UIX:SplineUI;
+  private _UIZ:SplineUI;
+  private _profilesActive:boolean;
 
   constructor(parentElement:HTMLElement){
     super("Lathe Geometry", uiParams);
     this.displayUIOn(parentElement);
-    this._splineUI = new Stage(this._id, new Point(300, 300));
-    this._points = [];
-
-    let p;
-    for(var i = 0; i < this["pointCount"]; ++i){
-      p = new Point(this._splineUI.size.x/3, i*this._splineUI.size.y/this["pointCount"]);
-      this._points.push(new DraggablePoint(p, 10));
-      this._points[i].updateFunction = this._updateCallback;
-      this._splineUI.addChild(this._points[i]);
-    }
-
-    this.rebuildSpline();
+    this._UIX = new SplineUI(this._id, this["pointCount"]);
+    this._UIX.updateFunctions(this._updateCallback, this._releaseCallback);
+    this._UIZ = new SplineUI(this._id, this["pointCount"]);
+    this._UIZ.updateFunctions(this._updateCallback, this._releaseCallback);
+    this._profilesActive = true;
   }
 
   public build = (resolutionDivider?:number):BufferGeometry => {
-    this.rebuildPoints();
+    this._UIX.rebuildPoints(this["pointCount"]);
+    this._UIZ.rebuildPoints(this["pointCount"]);
     return this.rebuildGeometry(resolutionDivider);
   }
 
-  protected rebuildPoints(){
-    if(this._points.length != this["pointCount"]){
-
-      for(let i = 0; i < this._points.length; ++i){
-        this._splineUI.removeChild(this._points[i]);
-      }
-
-      this._points = [];
-      let newPts = this._spline.spline(this["pointCount"]);
-
-      let p;
-      for(var i = 0; i < newPts.length; ++i){
-        p = new Point(newPts[i][0], newPts[i][1]);
-        this._points.push(new DraggablePoint(p, 10));
-        this._points[i].updateFunction = this._updateCallback;
-        this._points[i].releaseFunction = this._releaseCallback;
-        this._splineUI.addChild(this._points[i]);
-      }
-    }
-    this.rebuildSpline();
-  }
-
   public get numPoints(){
-    return this._points.length;
+    return this["pointCount"];
   }
 
   public updateFunctions(update, release){
     super.updateFunction(update);
     this._releaseCallback = release;
-    for(let i = 0; i < this._points.length; ++i){
-      this._points[i].updateFunction = update;
-      this._points[i].releaseFunction = this._releaseCallback;
-    }
+    this._UIX.updateFunctions(update, release);
+    this._UIZ.updateFunctions(update, release);
     this._updateCallback();
   }
 
@@ -85,29 +48,22 @@ export class LatheBuilder extends GeometryBuilder{
     this._releaseCallback();
   }
 
-  protected rebuildSpline(){
-    this._splineUI.removeChild(this._spline);
-    this._spline = new Spline(new Point(0,0), new Point(this._splineUI.size.x, this._splineUI.size.y), this._points);
-    this._splineUI.addChildAt(0, this._spline);
+  public toggleProfiles = () => {
+    this._profilesActive = !this._profilesActive;
+    this._UIZ.visible(this._profilesActive);
+    this._updateCallback();
   }
 
   protected rebuildGeometry(resolutionDivider?:number):BufferGeometry{
+    let ptsX = this._UIX.points(this["horizontalSlices"]/(resolutionDivider||1));
+    ptsX.forEach(pt => pt.multiplyScalar(this["scale"]));
+
+    let ptsZ = this._UIZ.points(this["horizontalSlices"]/(resolutionDivider||1));
+    ptsZ.forEach(pt => pt.multiplyScalar(this["scale"]));
 
     let divide:number = resolutionDivider || 1;
+    this._geometry = new SewnLatheBufferGeometry(ptsX, this._profilesActive ? ptsZ : ptsX, (this["verticalSlices"]/divide), 0, BJMath.TWO_PI );
 
-    let splinePoints = this._spline.spline(this["horizontalSlices"]/divide, 1.0);
-    let lathePoints = [];
-    let maxY = -100000000000;
-    for(let i = splinePoints.length-1; i >= 0 ; --i){
-        maxY = Math.max(splinePoints[i][1], maxY);
-        lathePoints.push(new Vector2(splinePoints[i][0], splinePoints[i][1]).multiplyScalar(this["scale"]));
-    }
-    maxY *= this["scale"];
-    for(let i = lathePoints.length-1; i >= 0 ; --i){
-        lathePoints[i].y = maxY-lathePoints[i].y;
-    }
-
-    this._geometry = new SewnLatheBufferGeometry(lathePoints , this["verticalSlices"]/divide, 0, BJMath.TWO_PI );
     return <BufferGeometry> this._geometry;
   }
 
@@ -161,5 +117,16 @@ let uiParams = {
         "value":100,
         "step":1
     }
-  }
+  },
+
+  "toggleProfiles":{
+    "attributes":{
+      "type":"button",
+      "value":"toggle profiles",
+      "style":"width:100%;"
+    },
+    "callbacks":{
+      "click":"toggleProfiles"
+    }
+  },
 }

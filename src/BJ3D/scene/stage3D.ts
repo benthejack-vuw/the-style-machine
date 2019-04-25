@@ -24,12 +24,12 @@ export class Stage3D{
 	private _parent:HTMLElement;
 	private _canvas:HTMLCanvasElement;
 	private _renderer:Renderer;
-	private _scene:THREE.Scene;
-	private _perspCamera:THREE.PerspectiveCamera;
-	private _lockedCamera:THREE.PerspectiveCamera;
-	private _currentCamera:THREE.Camera;
+	private _scene:Scene;
+	private _perspCamera:PerspectiveCamera;
+	private _lockedCamera:PerspectiveCamera;
+	private _currentCamera:Camera;
 
-	private _trackball:THREE.TrackballControls;
+	private _trackball:TrackballControls;
 
 	private _resizing:boolean = false;
 	private _cameraToggle:HTMLInputElement;

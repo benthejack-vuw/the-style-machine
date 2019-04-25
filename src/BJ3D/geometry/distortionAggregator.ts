@@ -418,8 +418,8 @@ export class DistortionAggregator extends UIObject{
             color: 0x156289,
             emissive: 0x072534,
             side: DoubleSide,
-            shading: FlatShading
           } );
+    this._bodyMaterial.flatShading = false;
 
     this._shellMaterial = new MeshBasicMaterial( {
           color: 0xFFFFFF,
@@ -435,6 +435,17 @@ export class DistortionAggregator extends UIObject{
   }
 
   public set geometry(geometry:BufferGeometry){
+
+    let skinVisible:boolean = false;;
+    let outerVisible:boolean = false;
+    let innerVisible:boolean = false;
+
+    if(this._skinMesh){
+      skinVisible  = this._skinMesh.visible;
+      outerVisible = this._outerMesh.visible;
+      innerVisible = this._innerMesh.visible;
+    }
+
     this._bodyShell = new DistortableGeometry(geometry.clone());
     this._skinShell = new DistortableGeometry(geometry.clone());
     this._innerShell = new DistortableGeometry(geometry.clone());
@@ -445,8 +456,10 @@ export class DistortionAggregator extends UIObject{
     this._innerMesh = new Mesh(this._innerShell.geometry(), this._shellMaterial);
     this._outerMesh = new Mesh(this._outerShell.geometry(), this._shellMaterial);
 
-    this.toggleOuterShell();
-    this.toggleInnerShell();
+    this._skinMesh.visible = skinVisible;
+    this._innerMesh.visible = innerVisible;
+    this._outerMesh.visible = outerVisible;
+
   }
 
   public set scene(scene:Scene){
@@ -585,7 +598,6 @@ export class DistortionAggregator extends UIObject{
     this._skinShell.set_current_state_as_initial();
 
     this.expand_shells();
-
   }
 
   public apply_distortions = (geometry:DistortableGeometry, distortions:any[]) => {

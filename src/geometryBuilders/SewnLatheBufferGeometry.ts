@@ -10,13 +10,14 @@ export class SewnLatheBufferGeometry extends BufferGeometry{
 
   private parameters:any;
 
-  constructor( points:any[], segments:number, phiStart:number, phiLength:number ){
+  constructor( pointsX:any[], pointsZ:any[], segments:number, phiStart:number, phiLength:number ){
     super();
 
     	this.type = 'LatheBufferGeometry';
 
     	this.parameters = {
-    		points: points,
+    		pointsX: pointsX,
+        pointsZ: pointsZ,
     		segments: segments,
     		phiStart: phiStart,
     		phiLength: phiLength
@@ -54,19 +55,19 @@ export class SewnLatheBufferGeometry extends BufferGeometry{
     		var sin = Math.sin( phi );
     		var cos = Math.cos( phi );
 
-    		for ( j = 0; j <= ( points.length - 1 ); j ++ ) {
+    		for ( j = 0; j <= ( pointsX.length - 1 ); j ++ ) {
 
     			// vertex
 
-    			vertex.x = points[ j ].x * sin;
-    			vertex.y = points[ j ].y;
-    			vertex.z = points[ j ].x * cos;
+    			vertex.x = pointsX[ j ].x * sin;
+    			vertex.y = pointsX[ j ].y;
+    			vertex.z = pointsZ[ j ].x * cos;
 
     			vertices.push( vertex.x, vertex.y, vertex.z );
 
     			// uv
     			uv.x = i / segments;
-    			uv.y = j / ( points.length - 1 );
+    			uv.y = j / ( pointsX.length - 1 );
 
     			uvs.push( uv.x, uv.y );
 
@@ -79,16 +80,16 @@ export class SewnLatheBufferGeometry extends BufferGeometry{
 
     	for ( i = 0; i < segments; i ++ ) {
 
-    		for ( j = 0; j < ( points.length - 1 ); j ++ ) {
+    		for ( j = 0; j < ( pointsX.length - 1 ); j ++ ) {
 
-    			base = j + i * points.length;
+    			base = j + i * pointsX.length;
 
           var a, b, c, d;
 
           if(i < segments-1){
     			   a = base;
-    			   b = base + points.length;
-    			   c = base + points.length + 1;
+    			   b = base + pointsX.length;
+    			   c = base + pointsX.length + 1;
     			   d = base + 1;
           }else{
              a = base;
