@@ -1,0 +1,63 @@
+body{
+  padding:0;
+  margin:0;
+}
+
+#controls{
+  background-color: #21252b;
+  border-right:solid 1px;
+
+  box-sizing: border-box;
+  margin:0;
+  float:left;
+  width:20%;
+  height:100vh;
+  overflow-y: scroll; 
+}
+
+#stage{
+  box-sizing: border-box;
+  margin:0;
+  float:left;
+  width:80%;
+  height:100vh;
+}
+
+#controls div{
+  margin: 10px;
+  padding: 10px;
+  background-color: #495160;
+  clear: both;
+  overflow: auto;
+}
+
+#controls label{
+  color:#EEE;
+  font-family: sans-serif;
+  float:left;
+  width:100%;
+  text-align: center;
+}
+
+#controls input[type="range"]{
+  width:100%;
+  float:left;
+}
+
+#controls input[type="button"]{
+  width:50%;
+  float:left;
+}
+
+#controls h1, h2, h3{
+  margin: 0;
+  margin-bottom: 10px;
+  width:100%;
+  text-align: center;
+  color: #FFF;
+  font-family: sans-serif;
+  font-weight: lighter;
+  float:left;
+  background-color: #576072;
+  border-bottom: solid 1px #30353f;
+}
